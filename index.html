@@ -1,0 +1,1181 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>UAGC DX Team Hub Dashboard</title>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            color: #333;
+        }
+
+        .container {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+
+        .header {
+            text-align: center;
+            margin-bottom: 40px;
+            color: white;
+        }
+
+        .header h1 {
+            font-size: 3rem;
+            font-weight: 700;
+            margin-bottom: 10px;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
+        }
+
+        .header p {
+            font-size: 1.2rem;
+            opacity: 0.9;
+        }
+
+        .search-bar {
+            background: white;
+            border-radius: 50px;
+            padding: 15px 30px;
+            margin: 30px auto;
+            max-width: 500px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+
+        .search-bar input {
+            border: none;
+            outline: none;
+            flex: 1;
+            font-size: 1rem;
+        }
+
+        .search-bar i {
+            color: #667eea;
+            font-size: 1.2rem;
+        }
+
+        .dashboard-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 30px;
+            margin-bottom: 40px;
+        }
+
+        .card {
+            background: white;
+            border-radius: 20px;
+            padding: 30px;
+            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.1);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 25px 50px rgba(0, 0, 0, 0.15);
+        }
+
+        .card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 5px;
+            background: linear-gradient(90deg, #667eea, #764ba2);
+        }
+
+        .card h2 {
+            font-size: 1.5rem;
+            margin-bottom: 20px;
+            color: #2d3748;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .card h2 i {
+            color: #667eea;
+        }
+
+        .team-member {
+            display: flex;
+            align-items: center;
+            padding: 15px;
+            margin: 10px 0;
+            background: #f8fafc;
+            border-radius: 12px;
+            transition: all 0.3s ease;
+            border-left: 4px solid transparent;
+        }
+
+        .team-member:hover {
+            background: #e2e8f0;
+            border-left-color: #667eea;
+            transform: translateX(5px);
+        }
+
+        .member-avatar {
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            background: linear-gradient(135deg, #667eea, #764ba2);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-weight: bold;
+            font-size: 1.2rem;
+            margin-right: 15px;
+        }
+
+        .member-info h3 {
+            font-size: 1.1rem;
+            margin-bottom: 5px;
+            color: #2d3748;
+        }
+
+        .member-role {
+            color: #667eea;
+            font-size: 0.9rem;
+            font-weight: 500;
+        }
+
+        .member-skills {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 5px;
+            margin-top: 8px;
+        }
+
+        .skill-tag {
+            background: #667eea;
+            color: white;
+            padding: 3px 8px;
+            border-radius: 12px;
+            font-size: 0.8rem;
+        }
+
+        .category-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 15px;
+            margin-top: 20px;
+        }
+
+        .category-item {
+            background: linear-gradient(135deg, #f8fafc, #e2e8f0);
+            padding: 20px;
+            border-radius: 12px;
+            text-align: center;
+            transition: all 0.3s ease;
+            cursor: pointer;
+            border: 2px solid transparent;
+        }
+
+        .category-item:hover {
+            background: linear-gradient(135deg, #667eea, #764ba2);
+            color: white;
+            transform: scale(1.05);
+            border-color: #667eea;
+        }
+
+        .category-item i {
+            font-size: 2rem;
+            margin-bottom: 10px;
+            display: block;
+        }
+
+        .quick-ref-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 20px;
+        }
+
+        .quick-ref-table th,
+        .quick-ref-table td {
+            padding: 15px;
+            text-align: left;
+            border-bottom: 1px solid #e2e8f0;
+        }
+
+        .quick-ref-table th {
+            background: #f8fafc;
+            font-weight: 600;
+            color: #2d3748;
+        }
+
+        .quick-ref-table tr:hover {
+            background: #f8fafc;
+        }
+
+        .task-link {
+            color: #667eea;
+            text-decoration: none;
+            font-weight: 500;
+            transition: color 0.3s ease;
+        }
+
+        .task-link:hover {
+            color: #764ba2;
+        }
+
+        .strategic-resources {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 20px;
+            margin-top: 20px;
+        }
+
+        .resource-item {
+            background: linear-gradient(135deg, #667eea, #764ba2);
+            color: white;
+            padding: 25px;
+            border-radius: 15px;
+            text-align: center;
+            transition: all 0.3s ease;
+            cursor: pointer;
+        }
+
+        .resource-item:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.2);
+        }
+
+        .resource-item h3 {
+            font-size: 1.3rem;
+            margin-bottom: 10px;
+        }
+
+        .resource-item p {
+            opacity: 0.9;
+            font-size: 0.9rem;
+        }
+
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 20px;
+            margin: 30px 0;
+        }
+
+        .stat-card {
+            background: white;
+            padding: 25px;
+            border-radius: 15px;
+            text-align: center;
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
+        }
+
+        .stat-number {
+            font-size: 2.5rem;
+            font-weight: 700;
+            color: #667eea;
+            margin-bottom: 10px;
+        }
+
+        .stat-label {
+            color: #718096;
+            font-size: 0.9rem;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .recent-updates {
+            background: #f8fafc;
+            padding: 20px;
+            border-radius: 15px;
+            margin-top: 20px;
+        }
+
+        .update-item {
+            display: flex;
+            align-items: center;
+            padding: 10px 0;
+            border-bottom: 1px solid #e2e8f0;
+        }
+
+        .update-item:last-child {
+            border-bottom: none;
+        }
+
+        .update-icon {
+            width: 40px;
+            height: 40px;
+            background: #667eea;
+            color: white;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-right: 15px;
+        }
+
+        @media (max-width: 768px) {
+            .header h1 {
+                font-size: 2rem;
+            }
+
+            .dashboard-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .container {
+                padding: 10px;
+            }
+        }
+
+        .pulse {
+            animation: pulse 2s infinite;
+        }
+
+        @keyframes pulse {
+            0% {
+                transform: scale(1);
+            }
+
+            50% {
+                transform: scale(1.05);
+            }
+
+            100% {
+                transform: scale(1);
+            }
+        }
+
+        /* Image Generator Styles */
+        .image-generator {
+            margin-top: 20px;
+        }
+
+        .generator-controls {
+            margin-bottom: 30px;
+        }
+
+        .input-group {
+            display: flex;
+            gap: 15px;
+            margin-bottom: 20px;
+            align-items: center;
+        }
+
+        .prompt-input {
+            flex: 1;
+            padding: 15px 20px;
+            border: 2px solid #e2e8f0;
+            border-radius: 12px;
+            font-size: 1rem;
+            outline: none;
+            transition: border-color 0.3s ease;
+        }
+
+        .prompt-input:focus {
+            border-color: #667eea;
+        }
+
+        .generate-btn {
+            background: linear-gradient(135deg, #667eea, #764ba2);
+            color: white;
+            border: none;
+            padding: 15px 25px;
+            border-radius: 12px;
+            font-size: 1rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .generate-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 10px 25px rgba(102, 126, 234, 0.3);
+        }
+
+        .generate-btn:disabled {
+            opacity: 0.6;
+            cursor: not-allowed;
+            transform: none;
+        }
+
+        .style-options {
+            display: flex;
+            gap: 20px;
+            align-items: center;
+            flex-wrap: wrap;
+        }
+
+        .style-options label {
+            font-weight: 500;
+            color: #4a5568;
+        }
+
+        .style-options select {
+            padding: 8px 12px;
+            border: 2px solid #e2e8f0;
+            border-radius: 8px;
+            background: white;
+            font-size: 0.9rem;
+            outline: none;
+            transition: border-color 0.3s ease;
+        }
+
+        .style-options select:focus {
+            border-color: #667eea;
+        }
+
+        .image-gallery {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            gap: 20px;
+            margin-top: 20px;
+        }
+
+        .gallery-placeholder {
+            grid-column: 1 / -1;
+            text-align: center;
+            padding: 60px 20px;
+            background: #f8fafc;
+            border: 2px dashed #e2e8f0;
+            border-radius: 15px;
+            color: #a0aec0;
+        }
+
+        .gallery-placeholder i {
+            font-size: 3rem;
+            margin-bottom: 15px;
+            display: block;
+        }
+
+        .generated-image {
+            position: relative;
+            border-radius: 15px;
+            overflow: hidden;
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
+            transition: transform 0.3s ease;
+        }
+
+        .generated-image:hover {
+            transform: scale(1.02);
+        }
+
+        .generated-image img {
+            width: 100%;
+            height: auto;
+            display: block;
+        }
+
+        .image-overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: linear-gradient(to bottom, transparent, rgba(0, 0, 0, 0.7));
+            display: flex;
+            align-items: flex-end;
+            padding: 15px;
+            opacity: 0;
+            transition: opacity 0.3s ease;
+        }
+
+        .generated-image:hover .image-overlay {
+            opacity: 1;
+        }
+
+        .image-actions {
+            display: flex;
+            gap: 10px;
+            margin-top: 10px;
+        }
+
+        .image-action-btn {
+            background: rgba(255, 255, 255, 0.9);
+            border: none;
+            padding: 8px 12px;
+            border-radius: 6px;
+            cursor: pointer;
+            font-size: 0.8rem;
+            transition: background 0.3s ease;
+        }
+
+        .image-action-btn:hover {
+            background: white;
+        }
+
+        .loading-spinner {
+            display: inline-block;
+            width: 20px;
+            height: 20px;
+            border: 3px solid #f3f3f3;
+            border-top: 3px solid #667eea;
+            border-radius: 50%;
+            animation: spin 1s linear infinite;
+        }
+
+        @keyframes spin {
+            0% {
+                transform: rotate(0deg);
+            }
+
+            100% {
+                transform: rotate(360deg);
+            }
+        }
+
+        .error-message {
+            background: #fed7d7;
+            color: #c53030;
+            padding: 15px;
+            border-radius: 8px;
+            margin-top: 15px;
+            border-left: 4px solid #f56565;
+        }
+
+        .success-message {
+            background: #c6f6d5;
+            color: #2f855a;
+            padding: 15px;
+            border-radius: 8px;
+            margin-top: 15px;
+            border-left: 4px solid #68d391;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container">
+        <div class="header">
+            <h1><i class="fas fa-users"></i> UAGC DX Team Hub</h1>
+            <p>Central documentation hub for the UAGC Digital Experience team</p>
+        </div>
+
+        <div class="search-bar">
+            <i class="fas fa-search"></i>
+            <input type="text" placeholder="Search documentation, team members, or tasks...">
+        </div>
+
+        <!-- Image Generation Section -->
+        <div class="card" style="margin-bottom: 30px;">
+            <h2><i class="fas fa-magic"></i> AI Image Generator</h2>
+            <div class="image-generator">
+                <div class="generator-controls">
+                    <div class="input-group">
+                        <input type="text" id="imagePrompt" placeholder="Describe the image you want to generate..."
+                            class="prompt-input">
+                        <button id="generateBtn" class="generate-btn">
+                            <i class="fas fa-wand-magic-sparkles"></i> Generate Image
+                        </button>
+                    </div>
+                    <div class="style-options">
+                        <label>Style:</label>
+                        <select id="imageStyle">
+                            <option value="vivid">Vivid</option>
+                            <option value="natural">Natural</option>
+                        </select>
+                        <label>Size:</label>
+                        <select id="imageSize">
+                            <option value="1024x1024">1024x1024</option>
+                            <option value="1792x1024">1792x1024</option>
+                            <option value="1024x1792">1024x1792</option>
+                        </select>
+                    </div>
+                </div>
+                <div id="imageGallery" class="image-gallery">
+                    <div class="gallery-placeholder">
+                        <i class="fas fa-image"></i>
+                        <p>Generated images will appear here</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="stats-grid">
+            <div class="stat-card">
+                <div class="stat-number">8</div>
+                <div class="stat-label">Team Members</div>
+            </div>
+            <div class="stat-card">
+                <div class="stat-number">6</div>
+                <div class="stat-label">Documentation Categories</div>
+            </div>
+            <div class="stat-card">
+                <div class="stat-number">5</div>
+                <div class="stat-label">Strategic Resources</div>
+            </div>
+            <div class="stat-card">
+                <div class="stat-number">100%</div>
+                <div class="stat-label">Success Rate</div>
+            </div>
+        </div>
+
+        <div class="dashboard-grid">
+            <!-- Leadership Team -->
+            <div class="card">
+                <h2><i class="fas fa-crown"></i> Leadership</h2>
+                <div class="team-member">
+                    <div class="member-avatar">T</div>
+                    <div class="member-info">
+                        <h3>Thomas</h3>
+                        <div class="member-role">DX Director / Product Owner</div>
+                        <div class="member-skills">
+                            <span class="skill-tag">Roadmap</span>
+                            <span class="skill-tag">Priorities</span>
+                            <span class="skill-tag">Release Approval</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="team-member">
+                    <div class="member-avatar">B</div>
+                    <div class="member-info">
+                        <h3>Brandy</h3>
+                        <div class="member-role">Digital Marketing & Web Operations Manager</div>
+                        <div class="member-skills">
+                            <span class="skill-tag">DX Governance</span>
+                            <span class="skill-tag">CMS Permissions</span>
+                            <span class="skill-tag">Training</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Backend Development -->
+            <div class="card">
+                <h2><i class="fas fa-server"></i> Backend Development</h2>
+                <div class="team-member">
+                    <div class="member-avatar">J</div>
+                    <div class="member-info">
+                        <h3>Jason</h3>
+                        <div class="member-role">Senior Backend Drupal Engineer</div>
+                        <div class="member-skills">
+                            <span class="skill-tag">Drupal</span>
+                            <span class="skill-tag">PHP</span>
+                            <span class="skill-tag">Security</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="team-member">
+                    <div class="member-avatar">W</div>
+                    <div class="member-info">
+                        <h3>Will</h3>
+                        <div class="member-role">Backend Engineer</div>
+                        <div class="member-skills">
+                            <span class="skill-tag">APIs</span>
+                            <span class="skill-tag">CI/CD</span>
+                            <span class="skill-tag">Pipelines</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Frontend Development & QA -->
+            <div class="card">
+                <h2><i class="fas fa-paint-brush"></i> Frontend Development & QA</h2>
+                <div class="team-member">
+                    <div class="member-avatar">B</div>
+                    <div class="member-info">
+                        <h3>Brian</h3>
+                        <div class="member-role">Front-End Dev & QA Lead</div>
+                        <div class="member-skills">
+                            <span class="skill-tag">Components</span>
+                            <span class="skill-tag">A11y</span>
+                            <span class="skill-tag">Testing</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="team-member">
+                    <div class="member-avatar">A</div>
+                    <div class="member-info">
+                        <h3>Anthony</h3>
+                        <div class="member-role">Front-End Developer & Experiment Engineer</div>
+                        <div class="member-skills">
+                            <span class="skill-tag">JavaScript</span>
+                            <span class="skill-tag">dataLayer</span>
+                            <span class="skill-tag">A/B Tests</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Marketing & Analytics -->
+            <div class="card">
+                <h2><i class="fas fa-chart-line"></i> Marketing & Analytics</h2>
+                <div class="team-member">
+                    <div class="member-avatar">O</div>
+                    <div class="member-info">
+                        <h3>Omar</h3>
+                        <div class="member-role">SEO & Analytics Specialist</div>
+                        <div class="member-skills">
+                            <span class="skill-tag">SEO</span>
+                            <span class="skill-tag">GA4/GTM</span>
+                            <span class="skill-tag">GSC</span>
+                            <span class="skill-tag">LLMO</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Documentation Categories -->
+            <div class="card">
+                <h2><i class="fas fa-folder-open"></i> Documentation Categories</h2>
+                <div class="category-grid">
+                    <div class="category-item">
+                        <i class="fas fa-rocket"></i>
+                        <h3>Getting Started</h3>
+                        <p>Onboarding & foundational info</p>
+                    </div>
+                    <div class="category-item">
+                        <i class="fas fa-code"></i>
+                        <h3>QA & Dev Notes</h3>
+                        <p>Development standards & QA</p>
+                    </div>
+                    <div class="category-item">
+                        <i class="fas fa-chart-bar"></i>
+                        <h3>Tracking & Analytics</h3>
+                        <p>GA4, GTM & data tracking</p>
+                    </div>
+                    <div class="category-item">
+                        <i class="fas fa-search"></i>
+                        <h3>SEO Guide</h3>
+                        <p>Search optimization strategies</p>
+                    </div>
+                    <div class="category-item">
+                        <i class="fas fa-globe"></i>
+                        <h3>Web Guidelines</h3>
+                        <p>Content & accessibility standards</p>
+                    </div>
+                    <div class="category-item">
+                        <i class="fas fa-tools"></i>
+                        <h3>References & Tools</h3>
+                        <p>Workflow tools & processes</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Quick Reference -->
+            <div class="card">
+                <h2><i class="fas fa-clock"></i> Quick Reference</h2>
+                <table class="quick-ref-table">
+                    <thead>
+                        <tr>
+                            <th>Task</th>
+                            <th>Go To</th>
+                            <th>Owner</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>Create Asana Task</td>
+                            <td><a href="#" class="task-link">Asana</a></td>
+                            <td>Brandy</td>
+                        </tr>
+                        <tr>
+                            <td>Update Content</td>
+                            <td><a href="#" class="task-link">Page Changes</a></td>
+                            <td>Brian</td>
+                        </tr>
+                        <tr>
+                            <td>Set Up A/B Test</td>
+                            <td><a href="#" class="task-link">Optimizely Tests</a></td>
+                            <td>Anthony</td>
+                        </tr>
+                        <tr>
+                            <td>Fix SEO Issue</td>
+                            <td><a href="#" class="task-link">SEO Hygiene</a></td>
+                            <td>Omar</td>
+                        </tr>
+                        <tr>
+                            <td>Run QA Check</td>
+                            <td><a href="#" class="task-link">QA Smoke Test</a></td>
+                            <td>Brian</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+
+        <!-- Strategic Resources -->
+        <div class="card">
+            <h2><i class="fas fa-star"></i> Strategic Resources</h2>
+            <div class="strategic-resources">
+                <div class="resource-item pulse">
+                    <i class="fas fa-brain" style="font-size: 2rem; margin-bottom: 15px;"></i>
+                    <h3>Strategic Intelligence Suite</h3>
+                    <p>Comprehensive strategic analysis for UAGC's digital transformation</p>
+                </div>
+                <div class="resource-item">
+                    <i class="fas fa-trending-up" style="font-size: 2rem; margin-bottom: 15px;"></i>
+                    <h3>SEO & CRO Strategy</h3>
+                    <p>40-60% traffic growth potential analysis and implementation roadmap</p>
+                </div>
+                <div class="resource-item">
+                    <i class="fas fa-user-friends" style="font-size: 2rem; margin-bottom: 15px;"></i>
+                    <h3>Personalization Strategy</h3>
+                    <p>Cookie-based personalization framework for 20-25% RFI increase</p>
+                </div>
+                <div class="resource-item">
+                    <i class="fas fa-shield-alt" style="font-size: 2rem; margin-bottom: 15px;"></i>
+                    <h3>Reputation Analysis</h3>
+                    <p>Comprehensive brand reputation management and recovery strategy</p>
+                </div>
+                <div class="resource-item">
+                    <i class="fas fa-chart-pie" style="font-size: 2rem; margin-bottom: 15px;"></i>
+                    <h3>SEO QBR</h3>
+                    <p>Quarterly business review for SEO performance and strategy</p>
+                </div>
+                <div class="resource-item">
+                    <i class="fas fa-robot" style="font-size: 2rem; margin-bottom: 15px;"></i>
+                    <h3>LLM Optimization</h3>
+                    <p>Large Language Model optimization strategy for search visibility</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Recent Updates -->
+        <div class="card">
+            <h2><i class="fas fa-history"></i> Recent Updates</h2>
+            <div class="recent-updates">
+                <div class="update-item">
+                    <div class="update-icon">
+                        <i class="fas fa-link"></i>
+                    </div>
+                    <div>
+                        <strong>SEO Redirect Decision Tree</strong> - Updated with new canonical link guidelines
+                    </div>
+                </div>
+                <div class="update-item">
+                    <div class="update-icon">
+                        <i class="fas fa-tachometer-alt"></i>
+                    </div>
+                    <div>
+                        <strong>Performance & Core Web Vitals</strong> - Added mobile optimization section
+                    </div>
+                </div>
+                <div class="update-item">
+                    <div class="update-icon">
+                        <i class="fas fa-code"></i>
+                    </div>
+                    <div>
+                        <strong>Drupal Coding Standards</strong> - Updated for latest Drupal version
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // OpenAI API Configuration
+        const OPENAI_API_KEY = 'org-88oDXMCHrWTEmV4jk2qXcMv7'; // Replace with your actual API key
+        const OPENAI_API_URL = 'https://api.openai.com/v1/images/generations';
+
+        // Image generation functionality
+        class ImageGenerator {
+            constructor() {
+                this.gallery = document.getElementById('imageGallery');
+                this.promptInput = document.getElementById('imagePrompt');
+                this.generateBtn = document.getElementById('generateBtn');
+                this.imageStyle = document.getElementById('imageStyle');
+                this.imageSize = document.getElementById('imageSize');
+                this.generatedImages = [];
+
+                this.initializeEventListeners();
+            }
+
+            initializeEventListeners() {
+                this.generateBtn.addEventListener('click', () => this.generateImage());
+                this.promptInput.addEventListener('keypress', (e) => {
+                    if (e.key === 'Enter') {
+                        this.generateImage();
+                    }
+                });
+            }
+
+            async generateImage() {
+                const prompt = this.promptInput.value.trim();
+
+                if (!prompt) {
+                    this.showError('Please enter a description for the image.');
+                    return;
+                }
+
+                if (OPENAI_API_KEY === 'YOUR_OPENAI_API_KEY_HERE') {
+                    this.showError('Please add your OpenAI API key to the script.');
+                    return;
+                }
+
+                this.setLoadingState(true);
+                this.clearMessages();
+
+                try {
+                    const response = await fetch(OPENAI_API_URL, {
+                        method: 'POST',
+                        headers: {
+                            'Content-Type': 'application/json',
+                            'Authorization': `Bearer ${OPENAI_API_KEY}`
+                        },
+                        body: JSON.stringify({
+                            model: 'dall-e-3',
+                            prompt: prompt,
+                            n: 1,
+                            size: this.imageSize.value,
+                            style: this.imageStyle.value,
+                            quality: 'standard'
+                        })
+                    });
+
+                    if (!response.ok) {
+                        const errorData = await response.json();
+                        throw new Error(errorData.error?.message || 'Failed to generate image');
+                    }
+
+                    const data = await response.json();
+                    const imageUrl = data.data[0].url;
+
+                    this.addImageToGallery(imageUrl, prompt);
+                    this.showSuccess('Image generated successfully!');
+                    this.promptInput.value = '';
+
+                } catch (error) {
+                    console.error('Error generating image:', error);
+                    this.showError(`Error: ${error.message}`);
+                } finally {
+                    this.setLoadingState(false);
+                }
+            }
+
+            setLoadingState(loading) {
+                this.generateBtn.disabled = loading;
+                if (loading) {
+                    this.generateBtn.innerHTML = '<div class="loading-spinner"></div> Generating...';
+                } else {
+                    this.generateBtn.innerHTML = '<i class="fas fa-wand-magic-sparkles"></i> Generate Image';
+                }
+            }
+
+            addImageToGallery(imageUrl, prompt) {
+                // Remove placeholder if it exists
+                const placeholder = this.gallery.querySelector('.gallery-placeholder');
+                if (placeholder) {
+                    placeholder.remove();
+                }
+
+                const imageContainer = document.createElement('div');
+                imageContainer.className = 'generated-image';
+
+                const img = document.createElement('img');
+                img.src = imageUrl;
+                img.alt = prompt;
+                img.loading = 'lazy';
+
+                const overlay = document.createElement('div');
+                overlay.className = 'image-overlay';
+
+                const actions = document.createElement('div');
+                actions.className = 'image-actions';
+
+                const downloadBtn = document.createElement('button');
+                downloadBtn.className = 'image-action-btn';
+                downloadBtn.innerHTML = '<i class="fas fa-download"></i> Download';
+                downloadBtn.addEventListener('click', () => this.downloadImage(imageUrl, prompt));
+
+                const copyBtn = document.createElement('button');
+                copyBtn.className = 'image-action-btn';
+                copyBtn.innerHTML = '<i class="fas fa-copy"></i> Copy URL';
+                copyBtn.addEventListener('click', () => this.copyImageUrl(imageUrl));
+
+                const deleteBtn = document.createElement('button');
+                deleteBtn.className = 'image-action-btn';
+                deleteBtn.innerHTML = '<i class="fas fa-trash"></i> Delete';
+                deleteBtn.addEventListener('click', () => this.deleteImage(imageContainer));
+
+                actions.appendChild(downloadBtn);
+                actions.appendChild(copyBtn);
+                actions.appendChild(deleteBtn);
+                overlay.appendChild(actions);
+
+                imageContainer.appendChild(img);
+                imageContainer.appendChild(overlay);
+
+                this.gallery.insertBefore(imageContainer, this.gallery.firstChild);
+                this.generatedImages.push({ url: imageUrl, prompt: prompt, element: imageContainer });
+            }
+
+            downloadImage(imageUrl, prompt) {
+                const link = document.createElement('a');
+                link.href = imageUrl;
+                link.download = `generated-image-${Date.now()}.png`;
+                document.body.appendChild(link);
+                link.click();
+                document.body.removeChild(link);
+            }
+
+            copyImageUrl(imageUrl) {
+                navigator.clipboard.writeText(imageUrl).then(() => {
+                    this.showSuccess('Image URL copied to clipboard!');
+                }).catch(() => {
+                    this.showError('Failed to copy URL to clipboard');
+                });
+            }
+
+            deleteImage(imageContainer) {
+                if (confirm('Are you sure you want to delete this image?')) {
+                    imageContainer.remove();
+                    this.generatedImages = this.generatedImages.filter(img => img.element !== imageContainer);
+
+                    // Show placeholder if no images left
+                    if (this.generatedImages.length === 0) {
+                        this.showPlaceholder();
+                    }
+                }
+            }
+
+            showPlaceholder() {
+                const placeholder = document.createElement('div');
+                placeholder.className = 'gallery-placeholder';
+                placeholder.innerHTML = '<i class="fas fa-image"></i><p>Generated images will appear here</p>';
+                this.gallery.appendChild(placeholder);
+            }
+
+            showError(message) {
+                this.clearMessages();
+                const errorDiv = document.createElement('div');
+                errorDiv.className = 'error-message';
+                errorDiv.textContent = message;
+                this.gallery.parentNode.insertBefore(errorDiv, this.gallery);
+            }
+
+            showSuccess(message) {
+                this.clearMessages();
+                const successDiv = document.createElement('div');
+                successDiv.className = 'success-message';
+                successDiv.textContent = message;
+                this.gallery.parentNode.insertBefore(successDiv, this.gallery);
+
+                // Auto-hide success message after 3 seconds
+                setTimeout(() => {
+                    if (successDiv.parentNode) {
+                        successDiv.parentNode.removeChild(successDiv);
+                    }
+                }, 3000);
+            }
+
+            clearMessages() {
+                const existingMessages = this.gallery.parentNode.querySelectorAll('.error-message, .success-message');
+                existingMessages.forEach(msg => msg.remove());
+            }
+        }
+
+        // Add interactive functionality
+        document.addEventListener('DOMContentLoaded', function () {
+            // Initialize image generator
+            const imageGenerator = new ImageGenerator();
+
+            // Search functionality
+            const searchInput = document.querySelector('.search-bar input');
+            searchInput.addEventListener('input', function (e) {
+                const searchTerm = e.target.value.toLowerCase();
+                const cards = document.querySelectorAll('.card');
+
+                cards.forEach(card => {
+                    const text = card.textContent.toLowerCase();
+                    if (text.includes(searchTerm) || searchTerm === '') {
+                        card.style.display = 'block';
+                    } else {
+                        card.style.display = 'none';
+                    }
+                });
+            });
+
+            // Add click handlers for interactive elements
+            const categoryItems = document.querySelectorAll('.category-item');
+            categoryItems.forEach(item => {
+                item.addEventListener('click', function () {
+                    alert('Category clicked: ' + this.querySelector('h3').textContent);
+                });
+            });
+
+            const resourceItems = document.querySelectorAll('.resource-item');
+            resourceItems.forEach(item => {
+                item.addEventListener('click', function () {
+                    alert('Resource clicked: ' + this.querySelector('h3').textContent);
+                });
+            });
+
+            const taskLinks = document.querySelectorAll('.task-link');
+            taskLinks.forEach(link => {
+                link.addEventListener('click', function (e) {
+                    e.preventDefault();
+                    alert('Task link clicked: ' + this.textContent);
+                });
+            });
+
+            // Add hover effects to team members
+            const teamMembers = document.querySelectorAll('.team-member');
+            teamMembers.forEach(member => {
+                member.addEventListener('mouseenter', function () {
+                    this.style.transform = 'translateX(10px)';
+                });
+
+                member.addEventListener('mouseleave', function () {
+                    this.style.transform = 'translateX(0)';
+                });
+            });
+
+            // Add some sample prompts for inspiration
+            const samplePrompts = [
+                "A modern team collaboration workspace with digital screens and creative elements",
+                "Professional web development team working on a project together",
+                "Abstract representation of digital transformation and innovation",
+                "Clean, modern dashboard interface with data visualizations",
+                "Team meeting room with whiteboards and technology setup"
+            ];
+
+            // Add sample prompts as clickable suggestions
+            const promptInput = document.getElementById('imagePrompt');
+            const suggestionsContainer = document.createElement('div');
+            suggestionsContainer.className = 'prompt-suggestions';
+            suggestionsContainer.style.cssText = 'margin-top: 10px; display: flex; flex-wrap: wrap; gap: 8px;';
+
+            samplePrompts.forEach(prompt => {
+                const suggestion = document.createElement('button');
+                suggestion.className = 'suggestion-btn';
+                suggestion.textContent = prompt;
+                suggestion.style.cssText = 'background: #f8fafc; border: 1px solid #e2e8f0; padding: 6px 12px; border-radius: 20px; font-size: 0.8rem; cursor: pointer; transition: all 0.3s ease;';
+                suggestion.addEventListener('click', () => {
+                    promptInput.value = prompt;
+                    promptInput.focus();
+                });
+                suggestion.addEventListener('mouseenter', () => {
+                    suggestion.style.background = '#667eea';
+                    suggestion.style.color = 'white';
+                });
+                suggestion.addEventListener('mouseleave', () => {
+                    suggestion.style.background = '#f8fafc';
+                    suggestion.style.color = 'inherit';
+                });
+                suggestionsContainer.appendChild(suggestion);
+            });
+
+            promptInput.parentNode.appendChild(suggestionsContainer);
+        });
+    </script>
+</body>
+
+</html>
