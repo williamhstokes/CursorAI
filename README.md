@@ -1,6 +1,6 @@
 # UAGC DX Team Hub Dashboard
 
-A modern, interactive dashboard for the UAGC Digital Experience team with integrated AI image generation capabilities.
+A modern, interactive dashboard for the UAGC Digital Experience team with integrated ChatGPT assistant capabilities.
 
 ## Features
 
@@ -11,12 +11,12 @@ A modern, interactive dashboard for the UAGC Digital Experience team with integr
 - **Strategic Resources**: Visual indicators for key strategic initiatives
 - **Recent Updates**: Timeline of recent documentation updates
 
-### 🤖 AI Image Generation
-- **OpenAI DALL-E 3 Integration**: Generate high-quality images from text descriptions
-- **Multiple Styles**: Choose between vivid and natural image styles
-- **Various Sizes**: Support for different image dimensions (1024x1024, 1792x1024, 1024x1792)
-- **Image Gallery**: View, download, copy URLs, and manage generated images
-- **Sample Prompts**: Pre-built suggestions for common use cases
+### 🤖 ChatGPT Assistant
+- **OpenAI ChatGPT Integration**: Chat with AI assistant for web development help
+- **Multiple Models**: Choose between GPT-3.5 Turbo, GPT-4, and GPT-4 Turbo
+- **Conversation History**: Maintains context throughout the chat session
+- **Typing Indicators**: Visual feedback when ChatGPT is responding
+- **Sample Questions**: Pre-built suggestions for common development topics
 
 ### 🔍 Interactive Features
 - **Real-time Search**: Filter dashboard content by keywords
@@ -46,27 +46,27 @@ A modern, interactive dashboard for the UAGC Digital Experience team with integr
 
 ## Usage
 
-### Generating Images
-1. Enter a description in the prompt input field
-2. Select your preferred style (vivid or natural)
-3. Choose image size
-4. Click "Generate Image" or press Enter
-5. Wait for the image to generate (usually 10-30 seconds)
-6. View, download, or manage the generated image
+### Using ChatGPT Assistant
+1. Type your question or message in the chat input field
+2. Select your preferred model (GPT-3.5 Turbo, GPT-4, or GPT-4 Turbo)
+3. Click "Send" or press Enter
+4. Wait for ChatGPT to respond (usually 2-5 seconds)
+5. Continue the conversation with follow-up questions
 
-### Sample Prompts
-The dashboard includes sample prompts for inspiration:
-- "A modern team collaboration workspace with digital screens and creative elements"
-- "Professional web development team working on a project together"
-- "Abstract representation of digital transformation and innovation"
-- "Clean, modern dashboard interface with data visualizations"
-- "Team meeting room with whiteboards and technology setup"
+### Sample Questions
+The dashboard includes sample questions for inspiration:
+- "How can I improve the performance of our Drupal website?"
+- "What are the best practices for SEO optimization?"
+- "Help me debug this JavaScript error"
+- "What's the latest in web accessibility standards?"
+- "How do I implement A/B testing with Optimizely?"
 
-### Managing Images
-- **Download**: Click the download button to save images locally
-- **Copy URL**: Copy the image URL to clipboard for sharing
-- **Delete**: Remove images from the gallery
-- **View**: Hover over images to see action buttons
+### Chat Features
+- **Conversation History**: Maintains context throughout your session
+- **Model Selection**: Choose between different GPT models
+- **Clear Chat**: Reset the conversation history
+- **Typing Indicators**: See when ChatGPT is responding
+- **Auto-scroll**: Automatically scrolls to new messages
 
 ## Team Structure
 
@@ -93,7 +93,7 @@ The dashboard includes sample prompts for inspiration:
 - **JavaScript ES6+**: Interactive functionality and API integration
 - **Font Awesome**: Icons and visual elements
 - **Google Fonts**: Inter font family
-- **OpenAI API**: DALL-E 3 image generation
+- **OpenAI API**: ChatGPT chat completions
 
 ### Browser Compatibility
 - Chrome 80+
@@ -102,8 +102,8 @@ The dashboard includes sample prompts for inspiration:
 - Edge 80+
 
 ### API Requirements
-- OpenAI API key with DALL-E 3 access
-- Internet connection for image generation
+- OpenAI API key with ChatGPT access
+- Internet connection for chat functionality
 - Modern browser with JavaScript enabled
 
 ## Security Notes
@@ -137,8 +137,8 @@ For production use, consider:
 
 ### Common Issues
 1. **"Please add your OpenAI API key"**: Make sure you've replaced the placeholder with your actual API key
-2. **"Failed to generate image"**: Check your internet connection and API key validity
-3. **Images not loading**: Ensure your browser supports modern JavaScript features
+2. **"Failed to get response from ChatGPT"**: Check your internet connection and API key validity
+3. **Chat not working**: Ensure your browser supports modern JavaScript features
 4. **CORS errors**: The dashboard should work in modern browsers, but some local file restrictions may apply
 
 ### Getting Help
