@@ -1,0 +1,187 @@
+{
+    "dashboard": {
+        "title": "DX One-Stop",
+        "theme": {
+            "primaryColor": "#5c647c",
+            "accentColor": "#ab0520",
+            "backgroundColor": "#f8f9fa"
+        },
+        "kanbanBoard": {
+            "title": "Team tasks",
+            "columns": [
+                {
+                    "id": "working-on-it",
+                    "title": "Working on it",
+                    "count": 2,
+                    "color": "#ff9500",
+                    "tasks": [
+                        {
+                            "id": "task-1",
+                            "title": "Team Manager",
+                            "assignee": {
+                                "name": "Thomas Simoneaux",
+                                "avatar": "male-short-dark-hair"
+                            }
+                        },
+                        {
+                            "id": "task-2",
+                            "title": "SEO Manager",
+                            "assignee": {
+                                "name": "Omar Corral",
+                                "avatar": "female-long-brown-hair"
+                            }
+                        }
+                    ]
+                },
+                {
+                    "id": "waiting-for-review",
+                    "title": "Waiting for review",
+                    "count": 2,
+                    "color": "#007AFF",
+                    "tasks": [
+                        {
+                            "id": "task-3",
+                            "title": "Facebook integration",
+                            "assignee": {
+                                "name": "Maria Garcia",
+                                "avatar": "female-curly-dark-hair"
+                            }
+                        },
+                        {
+                            "id": "task-4",
+                            "title": "Communication plan",
+                            "assignee": {
+                                "name": "Sarah Johnson",
+                                "avatar": "female-long-brown-hair"
+                            }
+                        }
+                    ]
+                },
+                {
+                    "id": "stuck",
+                    "title": "Stuck",
+                    "count": 1,
+                    "color": "#ab0520",
+                    "tasks": [
+                        {
+                            "id": "task-5",
+                            "title": "Identify key resources",
+                            "assignee": {
+                                "name": "Mike Wilson",
+                                "avatar": "male-short-brown-hair-beard"
+                            }
+                        }
+                    ]
+                },
+                {
+                    "id": "done",
+                    "title": "Done",
+                    "count": 1,
+                    "color": "#34C759",
+                    "tasks": [
+                        {
+                            "id": "task-6",
+                            "title": "Finalize kickoff materials",
+                            "assignee": {
+                                "name": "David Brown",
+                                "avatar": "male-bald-dark-skin"
+                            }
+                        }
+                    ]
+                }
+            ]
+        },
+        "monthlyView": {
+            "title": "This month",
+            "tasks": [
+                {
+                    "id": "task-6",
+                    "title": "Finalize kickoff materials",
+                    "owner": {
+                        "name": "David Brown",
+                        "avatar": "male-bald-dark-skin"
+                    },
+                    "priority": 5,
+                    "effort": "2",
+                    "status": {
+                        "label": "Done",
+                        "color": "#34C759"
+                    }
+                },
+                {
+                    "id": "task-1",
+                    "title": "Monitor budget",
+                    "owner": {
+                        "name": "John Smith",
+                        "avatar": "male-short-dark-hair"
+                    },
+                    "priority": 3,
+                    "effort": "4",
+                    "status": {
+                        "label": "Working on it",
+                        "color": "#ff9500"
+                    }
+                },
+                {
+                    "id": "task-5",
+                    "title": "Identify key resources",
+                    "owner": {
+                        "name": "Mike Wilson",
+                        "avatar": "male-short-brown-hair-beard"
+                    },
+                    "priority": 1,
+                    "effort": "1.5",
+                    "status": {
+                        "label": "Stuck",
+                        "color": "#ab0520"
+                    }
+                }
+            ]
+        },
+        "uiElements": {
+            "menuIcon": "three-dots-vertical",
+            "addButton": "plus-icon",
+            "priorityStars": {
+                "filled": "★",
+                "empty": "☆"
+            },
+            "statusLabels": {
+                "done": {
+                    "text": "Done",
+                    "backgroundColor": "#34C759",
+                    "textColor": "#ffffff"
+                },
+                "working": {
+                    "text": "Working on it",
+                    "backgroundColor": "#ff9500",
+                    "textColor": "#ffffff"
+                },
+                "stuck": {
+                    "text": "Stuck",
+                    "backgroundColor": "#ab0520",
+                    "textColor": "#ffffff"
+                },
+                "review": {
+                    "text": "Waiting for review",
+                    "backgroundColor": "#007AFF",
+                    "textColor": "#ffffff"
+                }
+            }
+        },
+        "layout": {
+            "kanbanBoard": {
+                "backgroundColor": "#5c647c",
+                "titleColor": "#2c3e50",
+                "cardBackground": "#ffffff",
+                "cardBorderRadius": "8px",
+                "cardPadding": "16px"
+            },
+            "monthlyView": {
+                "backgroundColor": "#ffffff",
+                "titleColor": "#007AFF",
+                "tableHeaderColor": "#f8f9fa",
+                "rowHoverColor": "#f1f3f4"
+            }
+        }
+    }
+}

@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>DX One-Stop - UAGC Digital Experience Team</title>
+    <link rel="stylesheet" href="styles.css">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+</head>
+
+<body>
+    <div class="container">
+        <!-- Header -->
+        <header class="header">
+            <div class="header-content">
+                <h1 class="dashboard-title">DX One-Stop</h1>
+                <div class="header-actions">
+                    <button class="menu-btn" id="menuBtn">
+                        <i class="fas fa-ellipsis-v"></i>
+                    </button>
+                </div>
+            </div>
+        </header>
+
+        <!-- Kanban Board Section -->
+        <section class="kanban-section">
+            <div class="kanban-header">
+                <h2 class="kanban-title">Here's Our Team</h2>
+            </div>
+            <div class="kanban-board" id="kanbanBoard">
+                <!-- Columns will be populated by JavaScript -->
+            </div>
+        </section>
+
+        <!-- Useful Tools Section -->
+        <section class="tools-section">
+            <div class="tools-header">
+                <h2 class="tools-title">Useful tools</h2>
+                <button class="add-btn" id="addToolBtn">
+                    <i class="fas fa-plus"></i>
+                </button>
+            </div>
+            <div class="tools-grid" id="toolsGrid">
+                <!-- Tools will be populated by JavaScript -->
+            </div>
+        </section>
+
+        <!-- File Upload Section -->
+        <section class="upload-section">
+            <div class="upload-header">
+                <h2 class="upload-title">File Upload</h2>
+            </div>
+            <div class="upload-container">
+                <div class="upload-area" id="uploadArea">
+                    <div class="upload-content">
+                        <i class="fas fa-cloud-upload-alt upload-icon"></i>
+                        <p class="upload-text">Drag and drop files here or click to browse</p>
+                        <p class="upload-subtext">Supports documents, images, and videos (max 5 files, 50MB total)</p>
+                        <input type="file" id="fileInput" multiple
+                            accept=".pdf,.doc,.docx,.jpg,.jpeg,.png,.gif,.mp4,.mov,.avi" style="display: none;">
+                    </div>
+                </div>
+                <div class="file-list" id="fileList">
+                    <!-- Uploaded files will be displayed here -->
+                </div>
+                <div class="upload-progress" id="uploadProgress" style="display: none;">
+                    <div class="progress-bar">
+                        <div class="progress-fill" id="progressFill"></div>
+                    </div>
+                    <span class="progress-text" id="progressText">0%</span>
+                </div>
+            </div>
+        </section>
+
+        <!-- Feedback Section -->
+        <footer class="feedback-section">
+            <div class="feedback-content">
+                <p class="feedback-text">Questions or suggestions? Send us feedback!</p>
+                <a href="mailto:william.stokes@uagc.edu" class="feedback-link">
+                    <i class="fas fa-envelope"></i>
+                    Send feedback
+                </a>
+            </div>
+        </footer>
+    </div>
+
+    <!-- Modal for Tool Details -->
+    <div class="modal" id="toolModal">
+        <div class="modal-content">
+            <span class="close" id="closeModal">&times;</span>
+            <h3 id="modalTitle"></h3>
+            <div id="modalBody"></div>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+
+</html>
