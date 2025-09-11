@@ -11,7 +11,7 @@
             "columns": [
                 {
                     "id": "working-on-it",
-                    "title": "Working on it",
+                    "title": "Managers",
                     "count": 2,
                     "color": "#ff9500",
                     "tasks": [
@@ -35,54 +35,63 @@
                 },
                 {
                     "id": "waiting-for-review",
-                    "title": "Waiting for review",
+                    "title": "Project Managers",
+                    "count": 1,
                     "color": "#007AFF",
                     "tasks": [
                         {
                             "id": "task-3",
-                            "title": "Facebook integration",
+                            "title": "Project Manager",
                             "assignee": {
-                                "name": "Maria Garcia",
+                                "name": "Brandy Black",
                                 "avatar": "female-curly-dark-hair"
-                            }
-                        },
-                        {
-                            "id": "task-4",
-                            "title": "Communication plan",
-                            "assignee": {
-                                "name": "Sarah Johnson",
-                                "avatar": "female-long-brown-hair"
                             }
                         }
                     ]
                 },
                 {
                     "id": "stuck",
-                    "title": "Stuck",
+                    "title": "Backend Developers",
                     "count": 1,
                     "color": "#ab0520",
                     "tasks": [
                         {
                             "id": "task-5",
-                            "title": "Identify key resources",
+                            "title": "Senior Backend Developer",
                             "assignee": {
-                                "name": "Mike Wilson",
+                                "name": "Jason Mongaras",
                                 "avatar": "male-short-brown-hair-beard"
+                            }
+                        },
+                        {
+                            "id": "task-4",
+                            "title": "Backend Developer",
+                            "assignee": {
+                                "name": "William Stokes",
+                                "avatar": "female-long-brown-hair"
                             }
                         }
                     ]
                 },
                 {
                     "id": "done",
-                    "title": "Done",
+                    "title": "Frontend Developers",
                     "count": 1,
                     "color": "#34C759",
                     "tasks": [
                         {
                             "id": "task-6",
-                            "title": "Finalize kickoff materials",
+                            "title": "Frontend Developer",
                             "assignee": {
-                                "name": "David Brown",
+                                "name": "Anthony Rivera",
+                                "avatar": "male-bald-dark-skin"
+                            }
+                        },
+                        {
+                            "id": "task-6",
+                            "title": "Frontend Developer",
+                            "assignee": {
+                                "name": "Brian Keim",
                                 "avatar": "male-bald-dark-skin"
                             }
                         }
