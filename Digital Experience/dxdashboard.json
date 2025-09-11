@@ -36,7 +36,6 @@
                 {
                     "id": "waiting-for-review",
                     "title": "Waiting for review",
-                    "count": 2,
                     "color": "#007AFF",
                     "tasks": [
                         {
