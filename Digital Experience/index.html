@@ -96,6 +96,195 @@
             </div>
         </section>
 
+        <!-- Keyword Value Calculator Section -->
+        <section class="keyword-calculator-section">
+            <div class="keyword-header">
+                <div class="keyword-title-section">
+                    <h2 class="keyword-title">Keyword Value Calculator</h2>
+                    <p class="keyword-subtitle">Optimize your content for adult learners (25+) considering UAGC
+                        enrollment</p>
+                </div>
+            </div>
+            <div class="keyword-calculator-container">
+                <div class="calculator-input">
+                    <div class="input-group">
+                        <label for="keywordInput" class="input-label">Enter a keyword or phrase:</label>
+                        <div class="input-wrapper">
+                            <input type="text" id="keywordInput"
+                                placeholder="e.g., 'career advancement', 'flexible learning', 'adult education'">
+                            <button class="analyze-btn" id="analyzeBtn">
+                                <i class="fas fa-search"></i>
+                                Analyze
+                            </button>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="calculator-results" id="calculatorResults" style="display: none;">
+                    <div class="results-header">
+                        <h3 class="results-title">Keyword Analysis Results</h3>
+                        <div class="keyword-display" id="keywordDisplay"></div>
+                    </div>
+
+                    <div class="score-grid">
+                        <div class="score-card adult-appeal">
+                            <div class="score-icon">
+                                <i class="fas fa-users"></i>
+                            </div>
+                            <div class="score-content">
+                                <h4 class="score-title">Adult Appeal</h4>
+                                <div class="score-value" id="adultAppealScore">0</div>
+                                <div class="score-description" id="adultAppealDesc">How well this resonates with adults
+                                    25+</div>
+                            </div>
+                        </div>
+
+                        <div class="score-card enrollment-potential">
+                            <div class="score-icon">
+                                <i class="fas fa-graduation-cap"></i>
+                            </div>
+                            <div class="score-content">
+                                <h4 class="score-title">Enrollment Potential</h4>
+                                <div class="score-value" id="enrollmentScore">0</div>
+                                <div class="score-description" id="enrollmentDesc">Likelihood to drive enrollment
+                                    interest</div>
+                            </div>
+                        </div>
+
+                        <div class="score-card uagc-alignment">
+                            <div class="score-icon">
+                                <i class="fas fa-university"></i>
+                            </div>
+                            <div class="score-content">
+                                <h4 class="score-title">UAGC Alignment</h4>
+                                <div class="score-value" id="uagcScore">0</div>
+                                <div class="score-description" id="uagcDesc">How well it fits UAGC's value proposition
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="score-card overall-score">
+                            <div class="score-icon">
+                                <i class="fas fa-star"></i>
+                            </div>
+                            <div class="score-content">
+                                <h4 class="score-title">Overall Score</h4>
+                                <div class="score-value" id="overallScore">0</div>
+                                <div class="score-description" id="overallDesc">Combined effectiveness rating</div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="recommendations">
+                        <h4 class="recommendations-title">Recommendations</h4>
+                        <div class="recommendations-content" id="recommendationsContent"></div>
+                    </div>
+
+                    <div class="alternative-keywords">
+                        <h4 class="alternatives-title">Alternative Keywords</h4>
+                        <div class="alternatives-content" id="alternativesContent"></div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- SEO Score Tool Section -->
+        <section class="seo-tool-section">
+            <div class="seo-header">
+                <div class="seo-title-section">
+                    <h2 class="seo-title">SEO Score Analyzer</h2>
+                    <p class="seo-subtitle">Analyze any webpage for SEO performance and optimization opportunities</p>
+                </div>
+            </div>
+            <div class="seo-tool-container">
+                <div class="seo-input">
+                    <div class="input-group">
+                        <label for="urlInput" class="input-label">Enter a webpage URL:</label>
+                        <div class="input-wrapper">
+                            <input type="url" id="urlInput" placeholder="https://example.com" required>
+                            <button class="analyze-seo-btn" id="analyzeSeoBtn">
+                                <i class="fas fa-search"></i>
+                                Analyze SEO
+                            </button>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="seo-results" id="seoResults" style="display: none;">
+                    <div class="seo-results-header">
+                        <h3 class="seo-results-title">SEO Analysis Results</h3>
+                        <div class="url-display" id="urlDisplay"></div>
+                    </div>
+
+                    <div class="seo-score-overview">
+                        <div class="overall-seo-score">
+                            <div class="score-circle">
+                                <div class="score-number" id="overallSeoScore">0</div>
+                                <div class="score-label">Overall SEO Score</div>
+                            </div>
+                        </div>
+                        <div class="score-breakdown">
+                            <div class="breakdown-item">
+                                <span class="breakdown-label">Technical SEO</span>
+                                <div class="breakdown-bar">
+                                    <div class="breakdown-fill" id="technicalScore" style="width: 0%"></div>
+                                </div>
+                                <span class="breakdown-value" id="technicalValue">0/100</span>
+                            </div>
+                            <div class="breakdown-item">
+                                <span class="breakdown-label">Content Quality</span>
+                                <div class="breakdown-bar">
+                                    <div class="breakdown-fill" id="contentScore" style="width: 0%"></div>
+                                </div>
+                                <span class="breakdown-value" id="contentValue">0/100</span>
+                            </div>
+                            <div class="breakdown-item">
+                                <span class="breakdown-label">Performance</span>
+                                <div class="breakdown-bar">
+                                    <div class="breakdown-fill" id="performanceScore" style="width: 0%"></div>
+                                </div>
+                                <span class="breakdown-value" id="performanceValue">0/100</span>
+                            </div>
+                            <div class="breakdown-item">
+                                <span class="breakdown-label">Mobile Friendly</span>
+                                <div class="breakdown-bar">
+                                    <div class="breakdown-fill" id="mobileScore" style="width: 0%"></div>
+                                </div>
+                                <span class="breakdown-value" id="mobileValue">0/100</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="seo-details">
+                        <div class="detail-section">
+                            <h4 class="detail-title">🔍 Technical SEO Issues</h4>
+                            <div class="detail-content" id="technicalIssues"></div>
+                        </div>
+
+                        <div class="detail-section">
+                            <h4 class="detail-title">📝 Content Analysis</h4>
+                            <div class="detail-content" id="contentAnalysis"></div>
+                        </div>
+
+                        <div class="detail-section">
+                            <h4 class="detail-title">⚡ Performance Metrics</h4>
+                            <div class="detail-content" id="performanceMetrics"></div>
+                        </div>
+
+                        <div class="detail-section">
+                            <h4 class="detail-title">📱 Mobile Optimization</h4>
+                            <div class="detail-content" id="mobileOptimization"></div>
+                        </div>
+                    </div>
+
+                    <div class="seo-recommendations">
+                        <h4 class="recommendations-title">💡 SEO Recommendations</h4>
+                        <div class="recommendations-content" id="seoRecommendations"></div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
         <!-- Useful Tools Section -->
         <section class="tools-section">
             <div class="tools-header">

@@ -12,7 +12,6 @@
                 {
                     "id": "working-on-it",
                     "title": "Managers",
-                    "count": 2,
                     "color": "#ff9500",
                     "tasks": [
                         {
@@ -36,7 +35,6 @@
                 {
                     "id": "waiting-for-review",
                     "title": "Project Managers",
-                    "count": 1,
                     "color": "#007AFF",
                     "tasks": [
                         {
@@ -52,7 +50,6 @@
                 {
                     "id": "stuck",
                     "title": "Backend Developers",
-                    "count": 1,
                     "color": "#ab0520",
                     "tasks": [
                         {
@@ -76,7 +73,6 @@
                 {
                     "id": "done",
                     "title": "Frontend Developers",
-                    "count": 1,
                     "color": "#34C759",
                     "tasks": [
                         {
@@ -88,7 +84,7 @@
                             }
                         },
                         {
-                            "id": "task-6",
+                            "id": "task-7",
                             "title": "Frontend Developer",
                             "assignee": {
                                 "name": "Brian Keim",

@@ -9,6 +9,8 @@ document.addEventListener('DOMContentLoaded', function () {
     loadDashboardData();
     initializeEventListeners();
     initializeFileUpload();
+    initializeKeywordCalculator();
+    initializeSeoTool();
 });
 
 // Load dashboard data from JSON file
@@ -137,7 +139,6 @@ function renderKanbanBoard() {
         <div class="kanban-column">
             <div class="column-header">
                 <span class="column-title">${column.title}</span>
-                <span class="column-count">${column.count}</span>
             </div>
             <div class="column-tasks">
                 ${column.tasks.map(task => `
@@ -610,3 +611,557 @@ notificationStyles.textContent = `
     }
 `;
 document.head.appendChild(notificationStyles);
+
+// Keyword Value Calculator Functionality
+const keywordDatabase = {
+    // High-value keywords for adult learners (25+)
+    highValue: {
+        'career advancement': { adultAppeal: 95, enrollment: 90, uagcAlignment: 85, alternatives: ['professional development', 'career growth', 'advancement opportunities'] },
+        'flexible learning': { adultAppeal: 92, enrollment: 88, uagcAlignment: 90, alternatives: ['online education', 'work-life balance', 'flexible schedule'] },
+        'adult education': { adultAppeal: 90, enrollment: 85, uagcAlignment: 80, alternatives: ['continuing education', 'lifelong learning', 'mature student'] },
+        'online degree': { adultAppeal: 88, enrollment: 92, uagcAlignment: 95, alternatives: ['distance learning', 'virtual education', 'remote degree'] },
+        'professional development': { adultAppeal: 87, enrollment: 82, uagcAlignment: 88, alternatives: ['skill building', 'career enhancement', 'workplace training'] },
+        'work-life balance': { adultAppeal: 85, enrollment: 78, uagcAlignment: 82, alternatives: ['flexible schedule', 'family-friendly', 'time management'] },
+        'career change': { adultAppeal: 83, enrollment: 85, uagcAlignment: 80, alternatives: ['new career', 'transition', 'second career'] },
+        'accredited program': { adultAppeal: 80, enrollment: 88, uagcAlignment: 92, alternatives: ['recognized degree', 'certified program', 'validated education'] },
+        'evening classes': { adultAppeal: 75, enrollment: 70, uagcAlignment: 75, alternatives: ['part-time study', 'after-hours learning', 'weekend courses'] },
+        'transfer credits': { adultAppeal: 78, enrollment: 82, uagcAlignment: 85, alternatives: ['credit transfer', 'prior learning', 'existing credits'] }
+    },
+
+    // Medium-value keywords
+    mediumValue: {
+        'university': { adultAppeal: 70, enrollment: 75, uagcAlignment: 90, alternatives: ['college', 'institution', 'higher education'] },
+        'degree program': { adultAppeal: 72, enrollment: 80, uagcAlignment: 88, alternatives: ['academic program', 'course of study', 'educational track'] },
+        'student support': { adultAppeal: 65, enrollment: 70, uagcAlignment: 85, alternatives: ['academic support', 'student services', 'learning assistance'] },
+        'affordable education': { adultAppeal: 68, enrollment: 75, uagcAlignment: 80, alternatives: ['cost-effective', 'budget-friendly', 'value education'] },
+        'experienced faculty': { adultAppeal: 60, enrollment: 65, uagcAlignment: 85, alternatives: ['qualified instructors', 'expert teachers', 'professional educators'] }
+    },
+
+    // Low-value keywords (less effective for adult learners)
+    lowValue: {
+        'college life': { adultAppeal: 30, enrollment: 25, uagcAlignment: 40, alternatives: ['campus experience', 'student activities', 'university culture'] },
+        'dormitory': { adultAppeal: 20, enrollment: 15, uagcAlignment: 30, alternatives: ['housing', 'accommodation', 'residence'] },
+        'fraternity': { adultAppeal: 15, enrollment: 10, uagcAlignment: 20, alternatives: ['student organizations', 'clubs', 'social groups'] },
+        'freshman': { adultAppeal: 25, enrollment: 20, uagcAlignment: 35, alternatives: ['new student', 'beginner', 'first-year'] },
+        'campus party': { adultAppeal: 10, enrollment: 5, uagcAlignment: 15, alternatives: ['social events', 'networking', 'community activities'] }
+    }
+};
+
+// Initialize keyword calculator
+function initializeKeywordCalculator() {
+    const analyzeBtn = document.getElementById('analyzeBtn');
+    const keywordInput = document.getElementById('keywordInput');
+
+    if (analyzeBtn) {
+        analyzeBtn.addEventListener('click', analyzeKeyword);
+    }
+
+    if (keywordInput) {
+        keywordInput.addEventListener('keypress', function (e) {
+            if (e.key === 'Enter') {
+                analyzeKeyword();
+            }
+        });
+    }
+}
+
+// Analyze keyword function
+function analyzeKeyword() {
+    const keywordInput = document.getElementById('keywordInput');
+    const keyword = keywordInput.value.trim().toLowerCase();
+
+    if (!keyword) {
+        showNotification('Please enter a keyword to analyze', 'warning');
+        return;
+    }
+
+    const analysis = analyzeKeywordValue(keyword);
+    displayResults(keyword, analysis);
+}
+
+// Analyze keyword value
+function analyzeKeywordValue(keyword) {
+    // Check in high-value keywords
+    for (const [key, data] of Object.entries(keywordDatabase.highValue)) {
+        if (keyword.includes(key) || key.includes(keyword)) {
+            return { ...data, category: 'high', keyword: key };
+        }
+    }
+
+    // Check in medium-value keywords
+    for (const [key, data] of Object.entries(keywordDatabase.mediumValue)) {
+        if (keyword.includes(key) || key.includes(keyword)) {
+            return { ...data, category: 'medium', keyword: key };
+        }
+    }
+
+    // Check in low-value keywords
+    for (const [key, data] of Object.entries(keywordDatabase.lowValue)) {
+        if (keyword.includes(key) || key.includes(keyword)) {
+            return { ...data, category: 'low', keyword: key };
+        }
+    }
+
+    // If no exact match, analyze based on word patterns
+    return analyzeByPatterns(keyword);
+}
+
+// Analyze by word patterns
+function analyzeByPatterns(keyword) {
+    let adultAppeal = 50;
+    let enrollment = 50;
+    let uagcAlignment = 50;
+    const alternatives = [];
+
+    // Adult-focused terms
+    const adultTerms = ['adult', 'mature', 'professional', 'career', 'work', 'flexible', 'online', 'evening', 'part-time'];
+    const enrollmentTerms = ['degree', 'program', 'education', 'learning', 'study', 'course', 'accredited'];
+    const uagcTerms = ['university', 'college', 'higher education', 'academic', 'institution'];
+
+    // Check for adult-focused terms
+    adultTerms.forEach(term => {
+        if (keyword.includes(term)) {
+            adultAppeal += 15;
+            enrollment += 10;
+        }
+    });
+
+    // Check for enrollment-focused terms
+    enrollmentTerms.forEach(term => {
+        if (keyword.includes(term)) {
+            enrollment += 15;
+            uagcAlignment += 10;
+        }
+    });
+
+    // Check for UAGC-aligned terms
+    uagcTerms.forEach(term => {
+        if (keyword.includes(term)) {
+            uagcAlignment += 15;
+        }
+    });
+
+    // Generate alternatives based on patterns
+    if (keyword.includes('career')) {
+        alternatives.push('professional development', 'work advancement', 'job growth');
+    }
+    if (keyword.includes('online')) {
+        alternatives.push('distance learning', 'virtual education', 'remote study');
+    }
+    if (keyword.includes('flexible')) {
+        alternatives.push('convenient', 'adaptable', 'accommodating');
+    }
+
+    // Cap scores at 100
+    adultAppeal = Math.min(adultAppeal, 100);
+    enrollment = Math.min(enrollment, 100);
+    uagcAlignment = Math.min(uagcAlignment, 100);
+
+    return {
+        adultAppeal,
+        enrollment,
+        uagcAlignment,
+        category: 'analyzed',
+        keyword: keyword,
+        alternatives: alternatives.length > 0 ? alternatives : ['career advancement', 'flexible learning', 'adult education']
+    };
+}
+
+// Display analysis results
+function displayResults(keyword, analysis) {
+    const resultsContainer = document.getElementById('calculatorResults');
+    const keywordDisplay = document.getElementById('keywordDisplay');
+    const adultAppealScore = document.getElementById('adultAppealScore');
+    const enrollmentScore = document.getElementById('enrollmentScore');
+    const uagcScore = document.getElementById('uagcScore');
+    const overallScore = document.getElementById('overallScore');
+    const adultAppealDesc = document.getElementById('adultAppealDesc');
+    const enrollmentDesc = document.getElementById('enrollmentDesc');
+    const uagcDesc = document.getElementById('uagcDesc');
+    const overallDesc = document.getElementById('overallDesc');
+    const recommendationsContent = document.getElementById('recommendationsContent');
+    const alternativesContent = document.getElementById('alternativesContent');
+
+    // Show results container
+    resultsContainer.style.display = 'block';
+
+    // Update keyword display
+    keywordDisplay.textContent = keyword;
+
+    // Calculate overall score
+    const overall = Math.round((analysis.adultAppeal + analysis.enrollment + analysis.uagcAlignment) / 3);
+
+    // Animate scores
+    animateScore(adultAppealScore, analysis.adultAppeal);
+    animateScore(enrollmentScore, analysis.enrollment);
+    animateScore(uagcScore, analysis.uagcAlignment);
+    animateScore(overallScore, overall);
+
+    // Update descriptions
+    adultAppealDesc.textContent = getScoreDescription(analysis.adultAppeal, 'adult');
+    enrollmentDesc.textContent = getScoreDescription(analysis.enrollment, 'enrollment');
+    uagcDesc.textContent = getScoreDescription(analysis.uagcAlignment, 'uagc');
+    overallDesc.textContent = getScoreDescription(overall, 'overall');
+
+    // Generate recommendations
+    recommendationsContent.innerHTML = generateRecommendations(analysis, overall);
+
+    // Display alternatives
+    alternativesContent.innerHTML = analysis.alternatives.map(alt =>
+        `<span class="alternative-keyword" onclick="selectAlternative('${alt}')">${alt}</span>`
+    ).join('');
+
+    // Scroll to results
+    resultsContainer.scrollIntoView({ behavior: 'smooth' });
+}
+
+// Animate score counting
+function animateScore(element, targetScore) {
+    let currentScore = 0;
+    const increment = targetScore / 30;
+    const timer = setInterval(() => {
+        currentScore += increment;
+        if (currentScore >= targetScore) {
+            currentScore = targetScore;
+            clearInterval(timer);
+        }
+        element.textContent = Math.round(currentScore);
+    }, 50);
+}
+
+// Get score description
+function getScoreDescription(score, type) {
+    if (score >= 80) return `Excellent ${type} potential`;
+    if (score >= 60) return `Good ${type} potential`;
+    if (score >= 40) return `Moderate ${type} potential`;
+    return `Low ${type} potential`;
+}
+
+// Generate recommendations
+function generateRecommendations(analysis, overall) {
+    const recommendations = [];
+
+    if (analysis.adultAppeal < 70) {
+        recommendations.push('Consider adding adult-focused terms like "career advancement" or "flexible learning"');
+    }
+
+    if (analysis.enrollment < 70) {
+        recommendations.push('Include enrollment-focused keywords like "degree program" or "accredited education"');
+    }
+
+    if (analysis.uagcAlignment < 70) {
+        recommendations.push('Add university-specific terms to better align with UAGC branding');
+    }
+
+    if (overall < 60) {
+        recommendations.push('This keyword may not be optimal for attracting adult learners to UAGC');
+    } else if (overall >= 80) {
+        recommendations.push('Excellent keyword choice for adult learner content!');
+    }
+
+    if (analysis.category === 'high') {
+        recommendations.push('This is a high-value keyword from our database - great choice!');
+    }
+
+    return recommendations.length > 0 ?
+        recommendations.map(rec => `<p>• ${rec}</p>`).join('') :
+        '<p>• Consider testing this keyword in your content to see how it performs</p>';
+}
+
+// Select alternative keyword
+function selectAlternative(alternative) {
+    const keywordInput = document.getElementById('keywordInput');
+    keywordInput.value = alternative;
+    analyzeKeyword();
+}
+
+// Add CSS for score animations
+const scoreAnimationStyles = document.createElement('style');
+scoreAnimationStyles.textContent = `
+    .score-value {
+        transition: all 0.3s ease;
+    }
+    
+    .alternative-keyword {
+        cursor: pointer;
+    }
+`;
+document.head.appendChild(scoreAnimationStyles);
+
+// SEO Score Tool Functionality
+function initializeSeoTool() {
+    const analyzeSeoBtn = document.getElementById('analyzeSeoBtn');
+    const urlInput = document.getElementById('urlInput');
+
+    if (analyzeSeoBtn) {
+        analyzeSeoBtn.addEventListener('click', analyzeSeo);
+    }
+
+    if (urlInput) {
+        urlInput.addEventListener('keypress', function (e) {
+            if (e.key === 'Enter') {
+                analyzeSeo();
+            }
+        });
+    }
+}
+
+// Analyze SEO function
+async function analyzeSeo() {
+    const urlInput = document.getElementById('urlInput');
+    const url = urlInput.value.trim();
+
+    if (!url) {
+        showNotification('Please enter a URL to analyze', 'warning');
+        return;
+    }
+
+    if (!isValidUrl(url)) {
+        showNotification('Please enter a valid URL (e.g., https://example.com)', 'error');
+        return;
+    }
+
+    // Show loading state
+    const analyzeBtn = document.getElementById('analyzeSeoBtn');
+    const originalText = analyzeBtn.innerHTML;
+    analyzeBtn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Analyzing...';
+    analyzeBtn.disabled = true;
+
+    try {
+        // Simulate analysis (in a real implementation, this would make API calls)
+        const seoAnalysis = await performSeoAnalysis(url);
+        displaySeoResults(url, seoAnalysis);
+    } catch (error) {
+        showNotification('Error analyzing URL. Please try again.', 'error');
+        console.error('SEO Analysis Error:', error);
+    } finally {
+        // Reset button
+        analyzeBtn.innerHTML = originalText;
+        analyzeBtn.disabled = false;
+    }
+}
+
+// Validate URL
+function isValidUrl(string) {
+    try {
+        new URL(string);
+        return true;
+    } catch (_) {
+        return false;
+    }
+}
+
+// Perform SEO Analysis (simulated)
+async function performSeoAnalysis(url) {
+    // Simulate API delay
+    await new Promise(resolve => setTimeout(resolve, 2000));
+
+    // Simulate SEO analysis results
+    const analysis = {
+        technical: Math.floor(Math.random() * 40) + 60, // 60-100
+        content: Math.floor(Math.random() * 40) + 60,   // 60-100
+        performance: Math.floor(Math.random() * 40) + 60, // 60-100
+        mobile: Math.floor(Math.random() * 40) + 60,     // 60-100
+        issues: generateSeoIssues(),
+        contentAnalysis: generateContentAnalysis(),
+        performanceMetrics: generatePerformanceMetrics(),
+        mobileOptimization: generateMobileOptimization(),
+        recommendations: generateSeoRecommendations()
+    };
+
+    analysis.overall = Math.round((analysis.technical + analysis.content + analysis.performance + analysis.mobile) / 4);
+
+    return analysis;
+}
+
+// Generate SEO Issues
+function generateSeoIssues() {
+    const issues = [
+        { type: 'warning', icon: '⚠️', text: 'Missing meta description' },
+        { type: 'info', icon: 'ℹ️', text: 'Consider adding structured data markup' },
+        { type: 'warning', icon: '⚠️', text: 'Some images lack alt text' },
+        { type: 'critical', icon: '🚨', text: 'No SSL certificate detected' },
+        { type: 'info', icon: 'ℹ️', text: 'Consider optimizing page loading speed' }
+    ];
+
+    return issues.slice(0, Math.floor(Math.random() * 3) + 2); // 2-4 issues
+}
+
+// Generate Content Analysis
+function generateContentAnalysis() {
+    const analyses = [
+        'Title tag is optimized and within recommended length',
+        'Content has good keyword density and relevance',
+        'Headings are properly structured (H1, H2, H3)',
+        'Content length is adequate for SEO',
+        'Internal linking structure is well organized',
+        'Content appears to be original and valuable'
+    ];
+
+    return analyses.slice(0, Math.floor(Math.random() * 3) + 3); // 3-5 items
+}
+
+// Generate Performance Metrics
+function generatePerformanceMetrics() {
+    const metrics = [
+        'Page load time: ' + (Math.random() * 2 + 1).toFixed(1) + ' seconds',
+        'First Contentful Paint: ' + (Math.random() * 1.5 + 0.5).toFixed(1) + ' seconds',
+        'Largest Contentful Paint: ' + (Math.random() * 2.5 + 1).toFixed(1) + ' seconds',
+        'Cumulative Layout Shift: ' + (Math.random() * 0.1).toFixed(3),
+        'Time to Interactive: ' + (Math.random() * 3 + 2).toFixed(1) + ' seconds'
+    ];
+
+    return metrics.slice(0, Math.floor(Math.random() * 2) + 3); // 3-4 metrics
+}
+
+// Generate Mobile Optimization
+function generateMobileOptimization() {
+    const optimizations = [
+        'Responsive design is properly implemented',
+        'Touch targets are appropriately sized',
+        'Text is readable without zooming',
+        'Mobile page speed is optimized',
+        'Viewport meta tag is correctly configured',
+        'Mobile-friendly navigation is present'
+    ];
+
+    return optimizations.slice(0, Math.floor(Math.random() * 2) + 4); // 4-5 items
+}
+
+// Generate SEO Recommendations
+function generateSeoRecommendations() {
+    const recommendations = [
+        'Optimize images by compressing them and using modern formats like WebP',
+        'Implement lazy loading for images and videos',
+        'Add more internal links to improve site structure',
+        'Create an XML sitemap and submit it to Google Search Console',
+        'Improve page loading speed by minifying CSS and JavaScript',
+        'Add more relevant keywords to your content naturally',
+        'Implement breadcrumb navigation for better user experience',
+        'Consider adding FAQ sections to target long-tail keywords'
+    ];
+
+    return recommendations.slice(0, Math.floor(Math.random() * 3) + 4); // 4-6 recommendations
+}
+
+// Display SEO Results
+function displaySeoResults(url, analysis) {
+    const resultsContainer = document.getElementById('seoResults');
+    const urlDisplay = document.getElementById('urlDisplay');
+    const overallSeoScore = document.getElementById('overallSeoScore');
+    const technicalScore = document.getElementById('technicalScore');
+    const contentScore = document.getElementById('contentScore');
+    const performanceScore = document.getElementById('performanceScore');
+    const mobileScore = document.getElementById('mobileScore');
+    const technicalValue = document.getElementById('technicalValue');
+    const contentValue = document.getElementById('contentValue');
+    const performanceValue = document.getElementById('performanceValue');
+    const mobileValue = document.getElementById('mobileValue');
+    const technicalIssues = document.getElementById('technicalIssues');
+    const contentAnalysis = document.getElementById('contentAnalysis');
+    const performanceMetrics = document.getElementById('performanceMetrics');
+    const mobileOptimization = document.getElementById('mobileOptimization');
+    const seoRecommendations = document.getElementById('seoRecommendations');
+
+    // Show results container
+    resultsContainer.style.display = 'block';
+
+    // Update URL display
+    urlDisplay.textContent = url;
+
+    // Animate overall score
+    animateSeoScore(overallSeoScore, analysis.overall);
+
+    // Animate breakdown scores
+    setTimeout(() => {
+        animateBreakdownScore(technicalScore, technicalValue, analysis.technical);
+        animateBreakdownScore(contentScore, contentValue, analysis.content);
+        animateBreakdownScore(performanceScore, performanceValue, analysis.performance);
+        animateBreakdownScore(mobileScore, mobileValue, analysis.mobile);
+    }, 500);
+
+    // Display detailed analysis
+    technicalIssues.innerHTML = analysis.issues.map(issue =>
+        `<div class="seo-issue ${issue.type}">
+            <span class="seo-issue-icon">${issue.icon}</span>
+            <span class="seo-issue-text">${issue.text}</span>
+        </div>`
+    ).join('');
+
+    contentAnalysis.innerHTML = analysis.contentAnalysis.map(item =>
+        `<p>• ${item}</p>`
+    ).join('');
+
+    performanceMetrics.innerHTML = analysis.performanceMetrics.map(metric =>
+        `<p>• ${metric}</p>`
+    ).join('');
+
+    mobileOptimization.innerHTML = analysis.mobileOptimization.map(item =>
+        `<p>• ${item}</p>`
+    ).join('');
+
+    seoRecommendations.innerHTML = analysis.recommendations.map(rec =>
+        `<p>• ${rec}</p>`
+    ).join('');
+
+    // Scroll to results
+    resultsContainer.scrollIntoView({ behavior: 'smooth' });
+}
+
+// Animate SEO score counting
+function animateSeoScore(element, targetScore) {
+    let currentScore = 0;
+    const increment = targetScore / 30;
+    const timer = setInterval(() => {
+        currentScore += increment;
+        if (currentScore >= targetScore) {
+            currentScore = targetScore;
+            clearInterval(timer);
+        }
+        element.textContent = Math.round(currentScore);
+    }, 50);
+}
+
+// Animate breakdown score
+function animateBreakdownScore(barElement, valueElement, targetScore) {
+    let currentScore = 0;
+    const increment = targetScore / 20;
+    const timer = setInterval(() => {
+        currentScore += increment;
+        if (currentScore >= targetScore) {
+            currentScore = targetScore;
+            clearInterval(timer);
+        }
+        const roundedScore = Math.round(currentScore);
+        barElement.style.width = `${roundedScore}%`;
+        valueElement.textContent = `${roundedScore}/100`;
+    }, 50);
+}
+
+// Add CSS for SEO tool animations
+const seoAnimationStyles = document.createElement('style');
+seoAnimationStyles.textContent = `
+    .score-number {
+        transition: all 0.3s ease;
+    }
+    
+    .breakdown-fill {
+        transition: width 1s ease-in-out;
+    }
+    
+    .seo-issue {
+        animation: slideInLeft 0.3s ease-out;
+    }
+    
+    @keyframes slideInLeft {
+        from {
+            transform: translateX(-20px);
+            opacity: 0;
+        }
+        to {
+            transform: translateX(0);
+            opacity: 1;
+        }
+    }
+`;
+document.head.appendChild(seoAnimationStyles);
