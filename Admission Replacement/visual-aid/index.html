@@ -1,0 +1,353 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Admissions → Admission Replacement (UAGC)</title>
+    <meta
+      name="description"
+      content="Visual aid for updating UAGC website content from Admissions to Admission."
+    />
+
+    <!-- Match UAGC style closely using common UA/UAGC typography. -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;600;700&display=swap"
+      rel="stylesheet"
+    />
+
+    <link rel="stylesheet" href="./src/styles.css" />
+  </head>
+  <body>
+    <a class="skip-link" href="#content">Skip to content</a>
+
+    <header class="site-header">
+      <div class="container header-inner">
+        <div class="brand">
+          <div class="brand-mark" aria-hidden="true"></div>
+          <div class="brand-text">
+            <div class="brand-title">UAGC</div>
+            <div class="brand-subtitle">Admissions content update guide</div>
+          </div>
+        </div>
+        <nav class="header-nav" aria-label="Guide navigation">
+          <a href="#steps">Steps</a>
+          <a href="#checklists">Checklists</a>
+          <a href="#links">Helpful links</a>
+        </nav>
+      </div>
+    </header>
+
+    <main id="content">
+      <section class="hero">
+        <div class="container hero-inner">
+          <div class="hero-copy">
+            <h1>Admissions → Admission Replacement</h1>
+            <p class="lede">
+              Use this visual aid to update occurrences of <strong>“Admissions”</strong> to
+              <strong>“Admission”</strong> across UAGC pages, including paragraph blocks
+              (Tools Card, Completion Journey, Tools Section, Image Card Layout) and URL
+              paths/redirects.
+            </p>
+
+            <div class="callout">
+              <div class="callout-title">Goal</div>
+              <div class="callout-body">
+                Ensure every degree-level page uses consistent wording, titles, URL aliases, and
+                redirects so users (and old links) land in the right place.
+              </div>
+            </div>
+          </div>
+
+          <aside class="hero-aside" aria-label="Degree levels in scope">
+            <div class="card">
+              <div class="card-title">Degree levels</div>
+              <ul class="card-list">
+                <li>Associate</li>
+                <li>Bachelor’s</li>
+                <li>Master’s</li>
+                <li>Doctoral</li>
+                <li>International</li>
+              </ul>
+              <div class="muted">
+                These match the “Admission Requirements” section navigation on the live site.
+              </div>
+              <figure class="figure">
+                <img
+                  src="./assets/07-degree-types.png"
+                  alt="Site navigation showing Admission Requirements degree types"
+                  loading="lazy"
+                />
+                <figcaption>Example: degree type links under “Admission Requirements”.</figcaption>
+              </figure>
+            </div>
+          </aside>
+        </div>
+      </section>
+
+      <section id="steps" class="section">
+        <div class="container">
+          <h2>Step-by-step process</h2>
+          <p class="muted">
+            Start by identifying which paragraph types/blocks contain the content you need to edit.
+            Then follow the steps below in order.
+          </p>
+
+          <ol class="steps">
+            <li class="step">
+              <div class="step-head">
+                <div class="step-number">1</div>
+                <div class="step-title">
+                  Export affected URLs with the Paragraphs report module
+                </div>
+              </div>
+              <div class="step-body">
+                <p>
+                  Use the <strong>Paragraphs report</strong> module to export a spreadsheet of
+                  URLs that contain your target paragraph types (Tools Card, Completion Journey,
+                  Tools Section, Image Card Layout).
+                </p>
+                <div class="tip">
+                  <div class="tip-title">Tip</div>
+                  <div class="tip-body">
+                    Export one paragraph type at a time. Then merge the exports into a single “work
+                    list” so you can track which pages you’ve fully reviewed.
+                  </div>
+                </div>
+              </div>
+            </li>
+
+            <li class="step">
+              <div class="step-head">
+                <div class="step-number">2</div>
+                <div class="step-title">
+                  Review each URL and update every paragraph type on the page
+                </div>
+              </div>
+              <div class="step-body">
+                <p>
+                  For each exported URL, review <strong>all paragraph types on that page</strong>
+                  and update each one (for example: change “Admissions” → “Admission” in headings,
+                  buttons, and card labels).
+                </p>
+
+                <div class="grid two">
+                  <figure class="figure">
+                    <img
+                      src="./assets/05-tools-section.png"
+                      alt="Tools section card example showing label ADMISSIONS"
+                      loading="lazy"
+                    />
+                    <figcaption>
+                      Example: tools section label that may need “Admissions” → “Admission”.
+                    </figcaption>
+                  </figure>
+
+                  <figure class="figure">
+                    <img
+                      src="./assets/06-tools-card-edit.png"
+                      alt="Drupal edit screen showing Tools Card Heading set to Admission"
+                      loading="lazy"
+                    />
+                    <figcaption>
+                      Example: Tools Card Heading field where you update the text.
+                    </figcaption>
+                  </figure>
+                </div>
+
+                <div class="tip">
+                  <div class="tip-title">Quick check</div>
+                  <div class="tip-body">
+                    Search the edit form for <strong>Admissions</strong> before saving to catch
+                    hidden labels (CTA text, link titles, image card headings, etc.).
+                  </div>
+                </div>
+              </div>
+            </li>
+
+            <li class="step">
+              <div class="step-head">
+                <div class="step-number">3</div>
+                <div class="step-title">
+                  Update the URL alias (if the content type uses one)
+                </div>
+              </div>
+              <div class="step-body">
+                <p>
+                  If the page uses a URL alias, change the path from
+                  <code>/admissions/&lt;level&gt;</code> to <code>/admission/&lt;level&gt;</code>
+                  (example: <code>/admissions/masters</code> → <code>/admission/masters</code>).
+                </p>
+
+                <figure class="figure">
+                  <img
+                    src="./assets/02-url-alias.png"
+                    alt="Drupal URL alias field example showing /admission/masters"
+                    loading="lazy"
+                  />
+                  <figcaption>Example: updating the URL alias path.</figcaption>
+                </figure>
+              </div>
+            </li>
+
+            <li class="step">
+              <div class="step-head">
+                <div class="step-number">4</div>
+                <div class="step-title">Confirm (and update) URL redirects for the page</div>
+              </div>
+              <div class="step-body">
+                <p>
+                  Update the URL redirect so the old path forwards to the new one:
+                  <code>/admissions/&lt;level&gt;</code> → <code>/admission/&lt;level&gt;</code>.
+                  Do this for each degree level: Associate, Bachelor’s, Master’s, Doctoral,
+                  International.
+                </p>
+
+                <figure class="figure">
+                  <img
+                    src="./assets/01-url-redirect.png"
+                    alt="Drupal URL redirects section showing from /admissions/masters"
+                    loading="lazy"
+                  />
+                  <figcaption>Example: updating a URL redirect from the old path.</figcaption>
+                </figure>
+              </div>
+            </li>
+
+            <li class="step">
+              <div class="step-head">
+                <div class="step-number">5</div>
+                <div class="step-title">Change the page title for the content type</div>
+              </div>
+              <div class="step-body">
+                <p>
+                  Update the title from <strong>“Master’s Admissions Requirements”</strong> to
+                  <strong>“Master’s Admission Requirements”</strong> (and similarly for each
+                  degree level).
+                </p>
+
+                <figure class="figure">
+                  <img
+                    src="./assets/04-title.png"
+                    alt="Page breadcrumb/title area showing Master's Admissions Requirements"
+                    loading="lazy"
+                  />
+                  <figcaption>
+                    Example: page title/breadcrumb where “Admissions” appears.
+                  </figcaption>
+                </figure>
+              </div>
+            </li>
+
+            <li class="step">
+              <div class="step-head">
+                <div class="step-number">6</div>
+                <div class="step-title">Add extra redirects for other inbound links (blogs, etc.)</div>
+              </div>
+              <div class="step-body">
+                <p>
+                  Add additional redirects to catch other inbound URLs that point to the old path
+                  (example: a blog linking to <code>https://www.uagc.edu/admissions/masters</code>).
+                </p>
+                <div class="tip">
+                  <div class="tip-title">Where to look</div>
+                  <div class="tip-body">
+                    Use site search, analytics, or backlink tools to discover old URLs still in use.
+                    Add redirects for the variants you find.
+                  </div>
+                </div>
+
+                <figure class="figure">
+                  <img
+                    src="./assets/03-completion-journey.png"
+                    alt="Completion journey section showing button labeled Admission Requirements"
+                    loading="lazy"
+                  />
+                  <figcaption>
+                    Example: CTA buttons must also use “Admission” wording consistently.
+                  </figcaption>
+                </figure>
+              </div>
+            </li>
+          </ol>
+        </div>
+      </section>
+
+      <section id="checklists" class="section section-alt">
+        <div class="container">
+          <h2>Checklists</h2>
+
+          <div class="grid two">
+            <div class="card">
+              <div class="card-title">Per-URL checklist</div>
+              <ul class="checklist">
+                <li>Open the page edit form in Drupal.</li>
+                <li>Review every paragraph type on the page (not just one).</li>
+                <li>Change all visible labels: headings, subheadings, CTA text, button labels.</li>
+                <li>Update internal links and link titles that contain “Admissions”.</li>
+                <li>Save, then verify on the published page (front-end).</li>
+              </ul>
+            </div>
+
+            <div class="card">
+              <div class="card-title">Per-degree-level checklist</div>
+              <ul class="checklist">
+                <li>Update the URL alias to <code>/admission/&lt;level&gt;</code> (if used).</li>
+                <li>
+                  Ensure redirect exists: <code>/admissions/&lt;level&gt;</code> →
+                  <code>/admission/&lt;level&gt;</code>.
+                </li>
+                <li>Update title: “&lt;Level&gt; Admissions …” → “&lt;Level&gt; Admission …”.</li>
+                <li>Confirm nav links for all five degree levels remain correct.</li>
+                <li>Spot-check key CTAs (cards, buttons, completion journey links).</li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section id="links" class="section">
+        <div class="container">
+          <h2>Helpful links</h2>
+          <p class="muted">
+            These are general references. If you have internal UAGC documentation for the exact
+            Drupal setup (Paragraphs report module, export steps, redirect workflows), add it here
+            too.
+          </p>
+
+          <div class="links">
+            <a class="link-card" href="https://www.drupal.org/project/paragraphs" target="_blank" rel="noreferrer">
+              <div class="link-title">Drupal Paragraphs module</div>
+              <div class="link-subtitle">Paragraph types and reusable page components</div>
+            </a>
+            <a class="link-card" href="https://www.drupal.org/project/redirect" target="_blank" rel="noreferrer">
+              <div class="link-title">Drupal Redirect module</div>
+              <div class="link-subtitle">Create/maintain URL redirects</div>
+            </a>
+            <a class="link-card" href="https://www.drupal.org/project/pathauto" target="_blank" rel="noreferrer">
+              <div class="link-title">Drupal Pathauto module</div>
+              <div class="link-subtitle">How URL aliases are generated/managed</div>
+            </a>
+            <a class="link-card" href="https://www.drupal.org/docs/core-modules-and-themes/core-modules/views-module" target="_blank" rel="noreferrer">
+              <div class="link-title">Drupal Views (reporting)</div>
+              <div class="link-subtitle">Common foundation for reports/exports</div>
+            </a>
+          </div>
+        </div>
+      </section>
+
+      <footer class="site-footer">
+        <div class="container footer-inner">
+          <div class="muted">
+            Visual aid for the “Admissions → Admission” content update project.
+          </div>
+          <div class="muted">
+            Repository-ready: place in GitHub and enable Pages from the <code>visual-aid</code>
+            folder.
+          </div>
+        </div>
+      </footer>
+    </main>
+  </body>
+</html>
