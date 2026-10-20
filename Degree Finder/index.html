@@ -1,0 +1,1831 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>UAGC Degree Finder — preview</title>
+<style>
+  body { margin: 0; background: #e7ebf0; }
+  .preview-note {
+    max-width: 920px;
+    margin: 16px auto 0;
+    padding: 12px 16px;
+    background: #fff8e8;
+    border: 1px solid #e2d2a4;
+    border-radius: 8px;
+    color: #0C234B;
+    font: 15px/1.45 "Segoe UI", Arial, sans-serif;
+  }
+  .preview-note strong { font-weight: 700; }
+</style>
+</head>
+<body>
+<p class="preview-note"><strong>Preview only.</strong> This bar is not part of the embed. In the page source, copy everything between the PASTE START and PASTE END comments into a Drupal Full HTML block (Source mode). Open this file in a browser to preview. Add <code>?sample=security</code>, <code>?sample=education</code>, or <code>?sample=health</code> to jump to sample results.</p>
+
+<!-- ========== PASTE INTO WYSIWYG: START ========== -->
+<div id="uagc-finder-root">
+<style>
+#uagc-finder, #uagc-finder * { box-sizing: border-box; }
+#uagc-finder {
+  --red: #AB0520;
+  --red-dark: #8C041B;
+  --navy: #0C234B;
+  --blue: #2375A7;
+  --blue-dark: #1B628C;
+  --ink: #172033;
+  --muted: #4E5968;
+  --line: #D5DCE3;
+  --paper: #F4F7F8;
+  --soft: #E8F2F8;
+  --warm: #F8F4EF;
+  --white: #ffffff;
+  max-width: 920px;
+  margin: 24px auto 40px;
+  background: var(--white);
+  color: var(--ink);
+  font-family: "proxima-nova", "Source Sans 3", "Segoe UI", Arial, sans-serif;
+  line-height: 1.5;
+  border-radius: 12px;
+  overflow: hidden;
+  box-shadow: 0 12px 40px rgba(12, 35, 75, 0.12);
+}
+#uagc-finder h1, #uagc-finder h2, #uagc-finder h3, #uagc-finder p { margin: 0; }
+#uagc-finder button, #uagc-finder input, #uagc-finder select { font-family: inherit; }
+#uagc-finder a { color: var(--blue-dark); }
+#uagc-finder .uf-top {
+  background: var(--navy);
+  color: #fff;
+  padding: 28px 32px 26px;
+  position: relative;
+}
+#uagc-finder .uf-top:before {
+  content: "";
+  position: absolute;
+  left: 0; right: 0; top: 0;
+  height: 6px;
+  background: var(--red);
+}
+#uagc-finder .uf-wordmark {
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  font-size: 12px;
+  font-weight: 700;
+  opacity: 0.85;
+}
+#uagc-finder .uf-kicker {
+  margin-top: 14px;
+  color: #8ECAE6;
+  font-weight: 700;
+  font-size: 13px;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+}
+#uagc-finder h1 { margin-top: 6px; font-size: 32px; line-height: 1.15; font-weight: 700; }
+#uagc-finder .uf-dek { margin-top: 10px; max-width: 68ch; color: #D5E2EE; font-size: 16px; }
+#uagc-finder .uf-body { padding: 22px 32px 32px; }
+#uagc-finder .uf-progress { display: flex; justify-content: space-between; gap: 12px; font-size: 13px; font-weight: 700; color: var(--navy); }
+#uagc-finder .uf-bar { margin: 8px 0 18px; height: 8px; background: #E3E8EE; border-radius: 99px; overflow: hidden; }
+#uagc-finder .uf-bar span { display: block; height: 100%; background: var(--red); border-radius: 99px; }
+#uagc-finder h2 { font-size: 26px; line-height: 1.25; color: var(--navy); }
+#uagc-finder .uf-help { margin: 8px 0 16px; color: var(--muted); max-width: 70ch; }
+#uagc-finder .uf-options { display: grid; gap: 10px; }
+#uagc-finder .uf-opt {
+  text-align: left;
+  width: 100%;
+  border: 1px solid var(--line);
+  background: #fff;
+  border-radius: 10px;
+  padding: 14px 16px 14px 18px;
+  cursor: pointer;
+  color: var(--ink);
+  display: block;
+}
+#uagc-finder .uf-opt:hover { border-color: var(--blue); background: #f8fbfd; }
+#uagc-finder .uf-opt[aria-checked="true"] {
+  border-color: var(--blue);
+  background: var(--soft);
+  box-shadow: inset 4px 0 0 var(--blue);
+}
+#uagc-finder .uf-opt:focus-visible, #uagc-finder button:focus-visible, #uagc-finder select:focus-visible, #uagc-finder input:focus-visible {
+  outline: 3px solid var(--red);
+  outline-offset: 2px;
+}
+#uagc-finder .uf-opt-label { display: block; font-weight: 700; color: var(--navy); }
+#uagc-finder .uf-opt-hint { display: block; color: var(--muted); font-size: 14px; margin-top: 2px; }
+#uagc-finder .uf-error { min-height: 1.2em; color: var(--red); font-weight: 700; margin: 10px 0 0; }
+#uagc-finder .uf-nav { display: flex; justify-content: space-between; gap: 12px; margin-top: 18px; }
+#uagc-finder .uf-btn {
+  border: 0;
+  border-radius: 999px;
+  padding: 12px 22px;
+  font-weight: 700;
+  cursor: pointer;
+  font-size: 16px;
+}
+#uagc-finder .uf-btn-primary { background: var(--blue); color: #fff; }
+#uagc-finder .uf-btn-primary:hover { background: var(--blue-dark); }
+#uagc-finder .uf-btn-red { background: var(--red); color: #fff; }
+#uagc-finder .uf-btn-red:hover { background: var(--red-dark); }
+#uagc-finder .uf-btn-ghost { background: #fff; color: var(--navy); border: 1px solid var(--navy); }
+#uagc-finder .uf-btn[disabled] { opacity: 0.45; cursor: not-allowed; }
+#uagc-finder .uf-field { margin-bottom: 14px; }
+#uagc-finder label.uf-label { display: block; font-weight: 700; color: var(--navy); margin-bottom: 6px; }
+#uagc-finder select, #uagc-finder input[type="text"] {
+  width: 100%;
+  max-width: 460px;
+  border: 1px solid var(--line);
+  border-radius: 8px;
+  padding: 12px 12px;
+  font-size: 16px;
+  color: var(--ink);
+  background: #fff;
+}
+#uagc-finder .uf-region-readout { margin-top: 8px; color: var(--navy); font-weight: 700; }
+#uagc-finder .uf-note {
+  margin-top: 12px;
+  background: #fff4f4;
+  border-left: 4px solid var(--red);
+  padding: 10px 12px;
+  color: var(--ink);
+  font-size: 14px;
+}
+#uagc-finder .uf-chips { display: flex; flex-wrap: wrap; gap: 8px; margin: 12px 0 16px; }
+#uagc-finder .uf-chip {
+  background: var(--paper);
+  color: var(--navy);
+  border-radius: 999px;
+  padding: 4px 10px;
+  font-size: 13px;
+  font-weight: 700;
+}
+#uagc-finder .uf-card {
+  border: 1px solid var(--line);
+  border-radius: 12px;
+  padding: 18px 18px 16px;
+  margin: 14px 0;
+  background: #fff;
+}
+#uagc-finder .uf-card-top { border-top: 4px solid var(--red); }
+#uagc-finder .uf-badge {
+  display: inline-block;
+  background: var(--navy);
+  color: #fff;
+  border-radius: 999px;
+  padding: 3px 10px;
+  font-size: 12px;
+  font-weight: 700;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+}
+#uagc-finder .uf-program { margin: 8px 0 4px; font-size: 28px; line-height: 1.2; color: var(--navy); }
+#uagc-finder .uf-career { font-size: 18px; color: var(--ink); }
+#uagc-finder ul { margin: 8px 0 0; padding-left: 18px; }
+#uagc-finder li { margin: 4px 0; }
+#uagc-finder .uf-payline { font-size: 22px; font-weight: 700; color: var(--navy); margin: 6px 0; }
+#uagc-finder .uf-muted { color: var(--muted); font-size: 14px; }
+#uagc-finder .uf-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; }
+#uagc-finder .uf-outlier { background: var(--warm); border-left: 4px solid var(--red); }
+#uagc-finder .uf-skill { display: grid; grid-template-columns: 150px 1fr 36px; gap: 8px; align-items: center; margin: 6px 0; font-size: 14px; }
+#uagc-finder .uf-track { height: 10px; background: #E3E8EE; border-radius: 99px; overflow: hidden; }
+#uagc-finder .uf-track span { display: block; height: 100%; background: var(--navy); border-radius: 99px; }
+#uagc-finder .uf-actions { display: flex; flex-wrap: wrap; gap: 10px; margin-top: 8px; }
+#uagc-finder .uf-sources { margin-top: 18px; font-size: 13px; color: var(--muted); }
+#uagc-finder .uf-sources li { margin: 3px 0; }
+#uagc-finder table.uf-table { width: 100%; border-collapse: collapse; font-size: 14px; margin-top: 8px; }
+#uagc-finder table.uf-table th, #uagc-finder table.uf-table td { text-align: left; padding: 8px 6px; border-bottom: 1px solid var(--line); vertical-align: top; }
+#uagc-finder table.uf-table th { color: var(--navy); font-size: 12px; letter-spacing: 0.04em; text-transform: uppercase; }
+#uagc-finder svg { width: 100%; height: auto; display: block; }
+@media (max-width: 720px) {
+  #uagc-finder .uf-top, #uagc-finder .uf-body { padding-left: 18px; padding-right: 18px; }
+  #uagc-finder h1 { font-size: 26px; }
+  #uagc-finder .uf-program { font-size: 24px; }
+  #uagc-finder .uf-grid { grid-template-columns: 1fr; }
+  #uagc-finder .uf-skill { grid-template-columns: 1fr; gap: 2px; }
+  #uagc-finder .uf-nav { flex-direction: column-reverse; }
+  #uagc-finder .uf-btn { width: 100%; }
+}
+@media print {
+  #uagc-finder { box-shadow: none; margin: 0; max-width: none; }
+  #uagc-finder .uf-nav, #uagc-finder .uf-actions { display: none; }
+}
+</style>
+
+<div id="uagc-finder">
+  <header class="uf-top">
+    <p class="uf-wordmark">The University of Arizona Global Campus</p>
+    <p class="uf-kicker">Degree Finder</p>
+    <h1 id="uf-title">Find a program that fits the work you want</h1>
+    <p class="uf-dek" id="uf-dek">Nine questions, all on this page. Matches come from programs listed on the UAGC site. Pay ranges start with U.S. Bureau of Labor Statistics figures, then adjust for your region and experience.</p>
+  </header>
+  <div class="uf-body" id="uf-main" aria-live="polite"></div>
+</div>
+
+<script>
+(function () {
+  var root = document.getElementById("uagc-finder");
+  if (!root || root.getAttribute("data-ready") === "1") return;
+  root.setAttribute("data-ready", "1");
+
+  var BASE = "https://www.uagc.edu";
+  var STORE = "uagcDegreeFinderV1";
+
+  /* May 2025 BLS OEWS / Occupational Outlook Handbook.
+     Calculated medians = published median hourly wage x 2,080, nearest $10.
+     p10/p90 and outlook are stored only when the OOH page states them. */
+  var W = {
+    allMedian: 50980,
+    allOutlook: 3,
+    pm: { median: 102320, p10: 61580, p90: 167970, outlook: 7, outlookText: "Much faster than average", href: "https://www.bls.gov/ooh/business-and-financial/project-management-specialists.htm" },
+    infosec: { median: 129180, p10: 75090, p90: 199850, outlook: 21, outlookText: "Much faster than average", href: "https://www.bls.gov/ooh/computer-and-information-technology/information-security-analysts.htm" },
+    logistics: { median: 82320, p10: 50890, p90: 133160, outlook: 18, outlookText: "Much faster than average", href: "https://www.bls.gov/ooh/business-and-financial/logisticians.htm" },
+    accountants: { median: 83680, p10: 56020, p90: 144090, outlook: 5, outlookText: "Faster than average", href: "https://www.bls.gov/ooh/business-and-financial/accountants-and-auditors.htm" },
+    healthMgr: { median: 123860, p10: 73390, p90: 224340, outlook: 24, outlookText: "Much faster than average", href: "https://www.bls.gov/ooh/management/medical-and-health-services-managers.htm" },
+    instruct: { median: 77440, p10: 47980, p90: 121670, outlook: 2, outlookText: "Slower than average", href: "https://www.bls.gov/ooh/education-training-and-library/instructional-coordinators.htm" },
+    software: { median: 135980, p10: 82460, p90: 214670, outlook: 10, outlookText: "Much faster than average", href: "https://www.bls.gov/ooh/computer-and-information-technology/software-developers.htm" },
+    rn: { median: 97550, p10: 68940, p90: 137470, outlook: 6, outlookText: "Faster than average", href: "https://www.bls.gov/ooh/healthcare/registered-nurses.htm" },
+    counselor: { median: 59350, p10: 38940, p90: 97590, outlook: 18, outlookText: "Much faster than average", href: "https://www.bls.gov/ooh/community-and-social-service/substance-abuse-behavioral-disorder-and-mental-health-counselors.htm" },
+    genMgr: { median: 105770, href: "https://www.bls.gov/ooh/management/top-executives.htm" },
+    mktMgr: { median: 166800 },
+    hrSpec: { median: 75940, href: "https://www.bls.gov/ooh/business-and-financial/human-resources-specialists.htm" },
+    hrMgr: { median: 149280 },
+    mktSpec: { median: 78770 },
+    trainSpec: { median: 69280 },
+    trainMgr: { median: 133000 },
+    support: { median: 61860 },
+    netAdmin: { median: 99130 },
+    sysAnalyst: { median: 105850 },
+    dataSci: { median: 120220 },
+    healthInfo: { median: 68020 },
+    healthEd: { median: 64060 },
+    preschool: { median: 38150 },
+    eceAdmin: { median: 59300 },
+    elemMean: { median: 72650, wageKind: "mean" },
+    spedMean: { median: 72650, wageKind: "mean" },
+    socMgr: { median: 80390 },
+    shsa: { median: 45930 },
+    probation: { median: 66270 },
+    emergency: { median: 93330 },
+    compliance: { median: 80720 },
+    pr: { median: 74760 },
+    writers: { median: 76920 },
+    techWrite: { median: 90400 },
+    finGroup: { median: 102090 },
+    mgmtAnalyst: { median: 101860 },
+    epi: { median: 87210 },
+    clinPsych: { median: 100590 },
+    k12admin: { median: 116100, wageKind: "mean" }
+  };
+
+  var REGIONS = {
+    northeast: { label: "Northeast", index: 1.1 },
+    midwest: { label: "Midwest", index: 0.96 },
+    south: { label: "South", index: 0.93 },
+    west: { label: "West", index: 1.07 },
+    other: { label: "Outside the United States", index: 1 }
+  };
+
+  var STATE_REGION = {
+    CT: "northeast", ME: "northeast", MA: "northeast", NH: "northeast", RI: "northeast", VT: "northeast", NJ: "northeast", NY: "northeast", PA: "northeast",
+    IL: "midwest", IN: "midwest", MI: "midwest", OH: "midwest", WI: "midwest", IA: "midwest", KS: "midwest", MN: "midwest", MO: "midwest", NE: "midwest", ND: "midwest", SD: "midwest",
+    DE: "south", DC: "south", FL: "south", GA: "south", MD: "south", NC: "south", SC: "south", VA: "south", WV: "south", AL: "south", KY: "south", MS: "south", TN: "south", AR: "south", LA: "south", OK: "south", TX: "south",
+    AZ: "west", CO: "west", ID: "west", MT: "west", NV: "west", NM: "west", UT: "west", WY: "west", AK: "west", CA: "west", HI: "west", OR: "west", WA: "west",
+    INTL: "other"
+  };
+
+  var STATE_NAME = {
+    CT: "Connecticut", ME: "Maine", MA: "Massachusetts", NH: "New Hampshire", RI: "Rhode Island", VT: "Vermont", NJ: "New Jersey", NY: "New York", PA: "Pennsylvania",
+    IL: "Illinois", IN: "Indiana", MI: "Michigan", OH: "Ohio", WI: "Wisconsin", IA: "Iowa", KS: "Kansas", MN: "Minnesota", MO: "Missouri", NE: "Nebraska", ND: "North Dakota", SD: "South Dakota",
+    DE: "Delaware", DC: "District of Columbia", FL: "Florida", GA: "Georgia", MD: "Maryland", NC: "North Carolina", SC: "South Carolina", VA: "Virginia", WV: "West Virginia", AL: "Alabama", KY: "Kentucky", MS: "Mississippi", TN: "Tennessee", AR: "Arkansas", LA: "Louisiana", OK: "Oklahoma", TX: "Texas",
+    AZ: "Arizona", CO: "Colorado", ID: "Idaho", MT: "Montana", NV: "Nevada", NM: "New Mexico", UT: "Utah", WY: "Wyoming", AK: "Alaska", CA: "California", HI: "Hawaii", OR: "Oregon", WA: "Washington",
+    INTL: "Outside the United States"
+  };
+
+  function prog(path, title, note) {
+    return { title: title, url: BASE + path, note: note || "" };
+  }
+
+  var FAMILIES = [
+    {
+      id: "project",
+      tags: { deliver: 6, ops: 3, lead: 2 },
+      career: Object.assign({ title: "Project management specialist" }, W.pm),
+      benchmark: "General and operations managers, a common step up, had a national median near $105,770.",
+      summary: [
+        "You would scope the work, build the schedule and budget, and keep vendors and teammates aligned.",
+        "BLS projects 7% growth from 2025 to 2035, much faster than the 3% average for all occupations.",
+        "The work shows up in construction, tech, healthcare, government, and corporate operations.",
+        "A bachelor's is the typical entry point. Certification such as PMP is optional and employer-specific."
+      ],
+      skills: [["Coordination", 94], ["Budgets", 80], ["Communication", 88], ["Risk", 76], ["Tools and data", 70]],
+      outlier: {
+        title: "Live-event, museum, or humanitarian project lead",
+        text: "The same planning muscles run exhibit installs, disaster-relief logistics, and conference productions. Pair project skills with storytelling or community work if a corporate PMO is not the life you want."
+      },
+      programs: {
+        associate: prog("/online-degrees/associate/organizational-management", "AA in Organizational Management"),
+        bachelor: prog("/online-degrees/bachelors/project-management", "BA in Project Management", "IACBE-accredited business program."),
+        master: prog("/online-degrees/masters/business-administration", "Master of Business Administration (MBA)", "IACBE-accredited business program.")
+      }
+    },
+    {
+      id: "org",
+      tags: { lead: 6, ops: 3, people: 2 },
+      doctoralFit: true,
+      career: Object.assign({ title: "General and operations manager" }, W.genMgr),
+      benchmark: "Project management specialists, a related role, had a national median of $102,320.",
+      summary: [
+        "You would set priorities across teams, fix broken processes, and translate strategy into weekly work.",
+        "UAGC's doctorate is in organizational leadership, aimed at people who already lead or plan to.",
+        "The day-to-day mix is meetings, decisions, writing, and coaching, more than a single technical craft.",
+        "Earnings vary widely by industry. The chart uses general and operations managers, not chief executives."
+      ],
+      skills: [["Leading people", 96], ["Strategy", 84], ["Communication", 90], ["Operations", 78], ["Coaching", 74]],
+      outlier: {
+        title: "Internal change partner or founder of a small practice",
+        text: "Organizational leadership also fits internal consulting, employee-experience work, and running a training or coaching practice after you have real supervisory experience."
+      },
+      programs: {
+        associate: prog("/online-degrees/associate/organizational-management", "AA in Organizational Management"),
+        bachelor: prog("/online-degrees/bachelors/organizational-management", "BA in Organizational Management", "IACBE-accredited business program."),
+        master: prog("/online-degrees/masters/organizational-management", "MA in Organizational Management", "IACBE-accredited business program."),
+        doctoral: prog("/online-degrees/doctoral/organizational-leadership", "Doctorate in Organizational Leadership")
+      }
+    },
+    {
+      id: "hr",
+      tags: { hr: 6, people: 4, lead: 2 },
+      career: Object.assign({ title: "Human resources specialist" }, W.hrSpec),
+      graduateCareer: Object.assign({ title: "Human resources manager" }, W.hrMgr),
+      benchmark: "Training and development specialists, a close neighbor, had a national median near $69,280.",
+      summary: [
+        "You would hire, coach, and build the policies people actually work under.",
+        "Bachelor's-level roles often start in recruiting, HR coordination, or employee relations.",
+        "A master's is aimed more at HR management: compensation, culture, and leading the function.",
+        "The human side still needs comfort with employment law, data, and difficult conversations."
+      ],
+      skills: [["People decisions", 92], ["Employment policy", 80], ["Coaching", 84], ["Data", 62], ["Writing", 70]],
+      outlier: {
+        title: "People analytics translator or workforce planner",
+        text: "If you like numbers as much as conversations, HR pairs with operations and finance: workforce planning, pay studies, and explaining people data to leaders who do not live in spreadsheets."
+      },
+      programs: {
+        associate: prog("/online-degrees/associate/business", "AA in Business"),
+        bachelor: prog("/online-degrees/bachelors/human-resources-management", "BA in Human Resources Management", "IACBE-accredited business program."),
+        master: prog("/online-degrees/masters/human-resource-management", "Master of Human Resource Management", "IACBE-accredited business program.")
+      }
+    },
+    {
+      id: "accounting",
+      tags: { accounting: 6, numbers: 3, detail: 3 },
+      career: Object.assign({ title: "Accountant or auditor" }, W.accountants),
+      summary: [
+        "You would prepare and examine financial records, then explain what the numbers mean for decisions.",
+        "BLS projects 5% growth from 2025 to 2035, faster than average.",
+        "Public accounting, corporate finance, government, and nonprofits all hire this skill set.",
+        "CPA licensure is a separate state process. This match does not assume you will pursue it."
+      ],
+      skills: [["Accuracy", 96], ["Financial statements", 90], ["Ethics", 78], ["Systems", 68], ["Explaining numbers", 74]],
+      outlier: {
+        title: "Nonprofit grant compliance or investigative accounting support",
+        text: "Accounting also lives in grant audits, fraud reviews, and mission-driven finance offices. Those paths use the same controls mindset outside a traditional firm."
+      },
+      programs: {
+        bachelor: prog("/online-degrees/bachelors/accounting", "BA in Accounting", "IACBE-accredited business program."),
+        master: prog("/online-degrees/masters/accounting", "Master of Accountancy", "IACBE-accredited business program.")
+      },
+      bridge: prog("/online-degrees/associate/business", "AA in Business")
+    },
+    {
+      id: "finance",
+      tags: { finance: 6, numbers: 3, analytics: 3 },
+      career: Object.assign({ title: "Financial analyst or advisor" }, W.finGroup),
+      summary: [
+        "You would study performance, build forecasts, and help people or organizations decide where money goes.",
+        "The pay figure is the BLS median for the financial analysts and advisors group, annualized from the May 2025 hourly median.",
+        "Banking, corporate finance, and advising are different jobs. Your first role depends on experience, not the degree title alone.",
+        "BA in Finance and BA in Business Economics both sit in this family. Economics leans toward analysis and policy context."
+      ],
+      skills: [["Analysis", 92], ["Forecasting", 84], ["Spreadsheets", 80], ["Communication", 70], ["Judgment", 76]],
+      outlier: {
+        title: "Mission finance: credit unions, housing, or grant portfolios",
+        text: "Finance training also supports community lending, college budgets, and grant portfolios. The work is still quantitative. The scoreboard is community impact plus solvency."
+      },
+      programs: {
+        bachelor: prog("/online-degrees/bachelors/finance", "BA in Finance", "IACBE-accredited business program."),
+        master: prog("/online-degrees/masters/finance", "MS in Finance", "IACBE-accredited business program.")
+      },
+      altProgram: prog("/online-degrees/bachelors/business-economics", "BA in Business Economics", "IACBE-accredited business program."),
+      bridge: prog("/online-degrees/associate/business", "AA in Business")
+    },
+    {
+      id: "marketing",
+      tags: { marketing: 6, create: 3, writing: 2 },
+      career: Object.assign({ title: "Market research analyst or marketing specialist" }, W.mktSpec),
+      benchmark: "Marketing managers had a national median near $166,800. Those jobs usually expect a track record, not a new diploma alone.",
+      summary: [
+        "You would study audiences, shape offers and messages, and report what actually changed behavior.",
+        "Research, campaign coordination, and content all sit under this degree. The first job is often specialist, not director.",
+        "Writing and basic data skills matter as much as creativity.",
+        "UAGC's graduate business route for this interest is the MBA, not a standalone marketing master's."
+      ],
+      skills: [["Audience insight", 88], ["Writing", 84], ["Campaigns", 80], ["Data", 66], ["Story", 78]],
+      outlier: {
+        title: "Cause campaigns or in-house storytelling for hospitals and schools",
+        text: "Marketing methods travel into fundraising, public health campaigns, and internal communications. You still need the craft. The client is a mission instead of a product."
+      },
+      programs: {
+        bachelor: prog("/online-degrees/bachelors/marketing", "BA in Marketing", "IACBE-accredited business program."),
+        master: prog("/online-degrees/masters/business-administration", "Master of Business Administration (MBA)", "IACBE-accredited business program.")
+      },
+      bridge: prog("/online-degrees/associate/business", "AA in Business")
+    },
+    {
+      id: "supply",
+      tags: { supply: 6, ops: 4, numbers: 2 },
+      career: Object.assign({ title: "Logistician" }, W.logistics),
+      summary: [
+        "You would plan how materials, products, or supplies move from source to the person who needs them.",
+        "BLS projects 18% growth from 2025 to 2035, much faster than average, pushed by e-commerce and complex chains.",
+        "Manufacturing, transportation, wholesale, government, and the military are major employers.",
+        "The work is practical and data-heavy: inventory, carriers, risk, and cost."
+      ],
+      skills: [["Planning", 90], ["Vendors", 82], ["Data", 76], ["Problem solving", 88], ["Cost", 74]],
+      outlier: {
+        title: "Humanitarian, military, or live-production logistics",
+        text: "Touring productions, disaster warehouses, and defense supply chains need the same sequencing skill. The setting changes. The deadline pressure does not."
+      },
+      programs: {
+        bachelor: prog("/online-degrees/bachelors/supply-chain-management", "BA in Supply Chain Management", "IACBE-accredited business program."),
+        master: prog("/online-degrees/masters/business-administration", "Master of Business Administration (MBA)", "IACBE-accredited business program.")
+      },
+      bridge: prog("/online-degrees/associate/business", "AA in Business")
+    },
+    {
+      id: "ops",
+      tags: { ops: 5, numbers: 3, analytics: 3, deliver: 2 },
+      career: Object.assign({ title: "Management analyst" }, W.mgmtAnalyst),
+      benchmark: "Operations research analysts, a more quantitative cousin, had a national median near $88,940.",
+      summary: [
+        "You would study how a business runs, find the waste, and recommend a better system.",
+        "Operations management, business administration, and project work overlap here.",
+        "Employers look for clear writing, comfort with spreadsheets, and the nerve to challenge a sloppy process.",
+        "Consulting is one setting. In-house operations roles are another, and often a better first step."
+      ],
+      skills: [["Diagnosis", 90], ["Process", 86], ["Data", 78], ["Writing", 74], ["Influence", 80]],
+      outlier: {
+        title: "Healthcare scheduling, studio operations, or venue systems",
+        text: "Clinics, warehouses, and production studios all break in predictable ways. An operations degree can land in those rooms if you learn the industry's vocabulary."
+      },
+      programs: {
+        associate: prog("/online-degrees/associate/business", "AA in Business"),
+        bachelor: prog("/online-degrees/bachelors/operations-management-analysis", "BA in Operations Management and Analysis", "IACBE-accredited business program."),
+        master: prog("/online-degrees/masters/business-administration", "Master of Business Administration (MBA)", "IACBE-accredited business program.")
+      }
+    },
+    {
+      id: "security",
+      tags: { security: 6, tech: 3, risk: 3 },
+      career: Object.assign({ title: "Information security analyst" }, W.infosec),
+      summary: [
+        "You would watch for attacks, close gaps, and write the practices that keep systems trustworthy.",
+        "BLS projects 21% growth from 2025 to 2035, much faster than average.",
+        "Many employers want some related IT experience plus a bachelor's. The pay floor is high because the work is specialized.",
+        "The BS in Cyber and Data Security Technology is ABET-accredited."
+      ],
+      skills: [["Risk", 94], ["Networks", 82], ["Writing procedures", 72], ["Curiosity", 88], ["Calm response", 80]],
+      outlier: {
+        title: "Healthcare privacy liaison or security trainer",
+        text: "Hospitals and universities need people who can explain risk to clinicians and staff, run access reviews, and teach. That is cyber work without living only in a security operations center. A later add-on is the BS in Health Information Management."
+      },
+      programs: {
+        bachelor: prog("/online-degrees/bachelors/cyber-data-security-technology", "BS in Cyber & Data Security Technology", "ABET-accredited computing program."),
+        master: prog("/online-degrees/masters/technology-management", "MS in Technology Management", "IACBE-accredited business program.")
+      },
+      bridge: prog("/online-degrees/associate/business", "AA in Business")
+    },
+    {
+      id: "it",
+      tags: { support: 5, tech: 4, systems: 3 },
+      career: Object.assign({ title: "Network and computer systems administrator" }, W.netAdmin),
+      benchmark: "Computer user support specialists, a frequent first role, had a national median near $61,860.",
+      summary: [
+        "You would keep networks, accounts, and machines working, and explain the fix in plain language.",
+        "Many people enter through support and move into administration. The chart uses the administrator median.",
+        "The BS in Information Technology is ABET-accredited.",
+        "Security, cloud, and documentation skills make this path easier to grow."
+      ],
+      skills: [["Troubleshooting", 92], ["Networks", 84], ["Support", 80], ["Documentation", 70], ["Security basics", 68]],
+      outlier: {
+        title: "Learning-technology admin or digital accessibility support",
+        text: "Schools, hospitals, and training teams need IT people who can run the tools teachers and clinicians actually touch, and who care whether everyone can use them."
+      },
+      programs: {
+        bachelor: prog("/online-degrees/bachelors/information-technology", "BS in Information Technology", "ABET-accredited computing program."),
+        master: prog("/online-degrees/masters/information-systems-management", "Master of Information Systems Management", "IACBE-accredited business program.")
+      },
+      bridge: prog("/online-degrees/associate/business", "AA in Business")
+    },
+    {
+      id: "software",
+      tags: { build: 6, tech: 4, data: 1 },
+      career: Object.assign({ title: "Software developer" }, W.software),
+      summary: [
+        "You would design, build, and improve applications, then test that they behave.",
+        "BLS projects 10% growth from 2025 to 2035 for software developers, much faster than average.",
+        "Portfolios and practice often matter alongside the degree. The BS in Computer Software Technology is the closest UAGC fit.",
+        "Quality assurance and web development are neighboring doors if a pure developer title is not the first offer."
+      ],
+      skills: [["Building", 94], ["Debugging", 88], ["Logic", 86], ["Collaboration", 70], ["Learning new tools", 82]],
+      outlier: {
+        title: "Learning-product builder or QA for education and health tools",
+        text: "Software skills also ship tutoring apps, training simulations, and the unglamorous testing that keeps them from failing students or patients."
+      },
+      programs: {
+        bachelor: prog("/online-degrees/bachelors/computer-software-technology", "BS in Computer Software Technology"),
+        master: prog("/online-degrees/masters/technology-management", "MS in Technology Management", "IACBE-accredited business program.")
+      },
+      bridge: prog("/online-degrees/associate/business", "AA in Business")
+    },
+    {
+      id: "bis",
+      tags: { systems: 5, tech: 3, numbers: 2, ops: 2 },
+      career: Object.assign({ title: "Computer systems analyst" }, W.sysAnalyst),
+      summary: [
+        "You would sit between a department and the technical team, translating a business problem into a system change.",
+        "The role rewards clear writing, process mapping, and enough technical depth to challenge a vague requirement.",
+        "BA in Business Information Systems is the undergraduate match. The master's route is information systems management.",
+        "It is a strong path if you like technology and do not want to write code all day."
+      ],
+      skills: [["Translation", 92], ["Requirements", 86], ["Process", 80], ["Data", 74], ["Stakeholders", 84]],
+      outlier: {
+        title: "Implementation lead for clinics, campuses, or nonprofits",
+        text: "New records systems, CRMs, and learning platforms fail without someone who speaks both operations and IT. That person is often the analyst."
+      },
+      programs: {
+        bachelor: prog("/online-degrees/bachelors/business-information-systems", "BA in Business Information Systems", "IACBE-accredited business program."),
+        master: prog("/online-degrees/masters/information-systems-management", "Master of Information Systems Management", "IACBE-accredited business program.")
+      },
+      bridge: prog("/online-degrees/associate/business", "AA in Business")
+    },
+    {
+      id: "data",
+      tags: { data: 6, analytics: 4, tech: 2, numbers: 2 },
+      career: Object.assign({ title: "Data scientist" }, W.dataSci),
+      benchmark: "Management and operations research roles can be a more realistic first step if you are still building a math and coding base.",
+      summary: [
+        "You would clean data, look for patterns, and tell a decision-maker what the pattern should change.",
+        "The national median for data scientists is high. Entry still depends on projects, statistics, and tools, not the diploma alone.",
+        "Business economics, information systems, and health informatics can all point here from different industries.",
+        "Pair the quantitative interest with a domain, such as supply chain, finance, or health, so the work has a home."
+      ],
+      skills: [["Analysis", 94], ["Statistics", 82], ["Storytelling with data", 80], ["Tools", 78], ["Skepticism", 76]],
+      outlier: {
+        title: "People analytics, health outcomes, or supply-chain analysis",
+        text: "The less obvious version of 'data' is a domain analyst inside HR, a hospital, or a logistics team. You may never hold the title data scientist, and the work can still be the job you wanted."
+      },
+      programs: {
+        bachelor: prog("/online-degrees/bachelors/business-economics", "BA in Business Economics", "IACBE-accredited business program."),
+        master: prog("/online-degrees/masters/health-informatics-analytics", "MS in Health Informatics & Analytics")
+      },
+      bridge: prog("/online-degrees/associate/business", "AA in Business")
+    },
+    {
+      id: "hcadmin",
+      tags: { admin: 5, health: 4, lead: 3, ops: 2 },
+      mission: 2,
+      career: Object.assign({ title: "Medical and health services manager" }, W.healthMgr),
+      summary: [
+        "You would run the business of care: staffing, budgets, quality, and the patient experience.",
+        "BLS projects 24% growth from 2025 to 2035, much faster than average.",
+        "Hospitals, clinics, nursing facilities, and insurance organizations employ this occupation.",
+        "Clinical licensure is not the point of this path. Credibility with clinicians still matters."
+      ],
+      skills: [["Operations", 90], ["Finance", 76], ["People leadership", 86], ["Compliance", 78], ["Service", 74]],
+      outlier: {
+        title: "Practice manager for a community clinic or telehealth startup",
+        text: "Health administration also means a 12-person clinic, a behavioral-health practice, or the operations seat at a digital care company. Smaller settings show the whole business faster."
+      },
+      programs: {
+        bachelor: prog("/online-degrees/bachelors/health-care-administration", "BA in Health Care Administration"),
+        master: prog("/online-degrees/masters/health-care-administration", "MA in Health Care Administration")
+      },
+      bridge: prog("/online-degrees/associate/business", "AA in Business")
+    },
+    {
+      id: "wellness",
+      tags: { wellness: 6, health: 3, care: 3, people: 2 },
+      mission: 3,
+      creative: 1,
+      career: Object.assign({ title: "Health education specialist" }, W.healthEd),
+      benchmark: "Dietitians and nutritionists had a national median near $76,400. That occupation has its own credential path.",
+      summary: [
+        "You would design programs around prevention: movement, nutrition literacy, stress, and health habits.",
+        "Employers include workplaces, community organizations, insurers, and schools.",
+        "This is not a nursing or registered-dietitian license. Confirm any credential you need in your state.",
+        "The BA in Health and Wellness is the closest undergraduate match. Public health is the graduate neighbor."
+      ],
+      skills: [["Coaching", 88], ["Program design", 84], ["Communication", 86], ["Behavior", 74], ["Community", 70]],
+      outlier: {
+        title: "Workplace wellbeing partner or health-content educator",
+        text: "Companies, unions, and digital programs hire people to build wellbeing benefits and explain them. It is education work with a health subject, often outside a clinic."
+      },
+      programs: {
+        bachelor: prog("/online-degrees/bachelors/health-and-wellness", "BA in Health and Wellness"),
+        master: prog("/online-degrees/masters/public-health", "Master of Public Health (MPH)")
+      },
+      bridge: prog("/online-degrees/associate/organizational-management", "AA in Organizational Management")
+    },
+    {
+      id: "him",
+      tags: { him: 6, health: 3, data: 4, detail: 3 },
+      career: Object.assign({ title: "Health information technologist or medical registrar" }, W.healthInfo),
+      summary: [
+        "You would organize health records, protect data, and help clinicians and billers find a clean story in the chart.",
+        "The BS in Health Information Management is CAHIIM-accredited. Professional credentials such as RHIA are separate from the degree.",
+        "The master's in health informatics and analytics pushes further into data and systems.",
+        "Privacy, coding context, and calm attention to detail are the daily tools."
+      ],
+      skills: [["Accuracy", 94], ["Privacy", 86], ["Data", 82], ["Health systems", 78], ["Communication", 64]],
+      outlier: {
+        title: "Patient-portal educator or revenue-cycle analyst",
+        text: "Health information people also train staff on the record system, or sit with billing to find why claims fail. Both use the record. Neither is a pure coding job."
+      },
+      programs: {
+        bachelor: prog("/online-degrees/bachelors/health-information-management", "BS in Health Information Management", "CAHIIM-accredited program."),
+        master: prog("/online-degrees/masters/health-informatics-analytics", "MS in Health Informatics & Analytics")
+      },
+      bridge: prog("/online-degrees/associate/business", "AA in Business")
+    },
+    {
+      id: "publichealth",
+      tags: { community: 5, health: 3, mission: 3, data: 2 },
+      mission: 4,
+      career: Object.assign({ title: "Epidemiologist" }, W.epi),
+      benchmark: "Health education specialists had a national median near $64,060 and are a common master's-level neighbor.",
+      summary: [
+        "You would study patterns of health in groups, then help an agency, hospital, or employer respond.",
+        "The chart uses the BLS median hourly wage for epidemiologists, annualized. Many of those jobs expect a master's.",
+        "The MPH is the graduate match. Undergraduate neighbors are health and wellness, health and human services, and social science.",
+        "Fieldwork, clear writing, and respect for community data matter as much as statistics."
+      ],
+      skills: [["Population health", 90], ["Data", 78], ["Writing", 76], ["Community trust", 84], ["Program design", 72]],
+      outlier: {
+        title: "Employer health strategist or outbreak communications",
+        text: "Public health training also supports benefits design, health-equity reporting, and the person who explains risk to a nonscientific audience during a crisis."
+      },
+      programs: {
+        bachelor: prog("/online-degrees/bachelors/health-and-human-services", "BA in Health and Human Services"),
+        master: prog("/online-degrees/masters/public-health", "Master of Public Health (MPH)")
+      },
+      bridge: prog("/online-degrees/associate/organizational-management", "AA in Organizational Management")
+    },
+    {
+      id: "nursing",
+      tags: { rn: 8, care: 4, health: 3 },
+      requiresRn: true,
+      career: Object.assign({ title: "Registered nurse" }, W.rn),
+      summary: [
+        "This match is only for someone who already holds an RN license and wants the bachelor's.",
+        "BLS projects 6% growth from 2025 to 2035 for registered nurses, faster than average.",
+        "The BS in Nursing is CCNE-accredited. It is an RN to BSN, not an entry-to-practice nursing degree.",
+        "If you are not an RN, health care administration, health and wellness, or health and human services are the nearer paths."
+      ],
+      skills: [["Clinical judgment", 90], ["Care coordination", 86], ["Communication", 84], ["Evidence", 72], ["Leadership", 68]],
+      outlier: {
+        title: "Nurse educator, case management, or informatics bridge",
+        text: "An RN to BSN often supports moves into education, utilization review, quality, or a later informatics degree. Those are still nursing careers. They are not all bedside."
+      },
+      programs: {
+        bachelor: prog("/online-degrees/bachelors/nursing", "BS in Nursing (RN to BSN)", "CCNE-accredited. Current RN license required.")
+      }
+    },
+    {
+      id: "early",
+      tags: { children: 6, teach: 3, care: 3 },
+      mission: 2,
+      career: Object.assign({ title: "Preschool teacher" }, W.preschool),
+      benchmark: "Education and childcare administrators in preschool and daycare settings had a national median near $59,300.",
+      summary: [
+        "You would plan learning for young children and partner with the adults who raise them.",
+        "Preschool teacher pay is often lower than other bachelor's paths. The chart uses that occupation on purpose.",
+        "Center leadership is a different occupation and a higher band. The administration degree points there.",
+        "State licensing for teachers and for childcare centers is separate. Confirm both where you plan to work."
+      ],
+      skills: [["Child development", 94], ["Patience", 90], ["Family partnership", 84], ["Creativity", 80], ["Observation", 76]],
+      outlier: {
+        title: "Children's museum educator or military child-and-youth programs",
+        text: "Development knowledge also fits museum floors, library story times, and child-and-youth programs on installations. Those employers still care about safety, play, and family trust."
+      },
+      programs: {
+        associate: prog("/online-degrees/associate/early-childhood-education", "AA in Early Childhood Education"),
+        bachelor: prog("/online-degrees/bachelors/early-childhood-education", "BA in Early Childhood Education"),
+        master: prog("/online-degrees/masters/early-childhood-education-leadership", "MA in Early Childhood Education Leadership")
+      },
+      altProgram: prog("/online-degrees/bachelors/early-childhood-education-administration", "BA in Early Childhood Education Administration")
+    },
+    {
+      id: "learntech",
+      tags: { design: 6, teach: 3, tech: 3 },
+      creative: 2,
+      career: Object.assign({ title: "Instructional coordinator" }, W.instruct),
+      benchmark: "Training and development specialists had a national median near $69,280. Training managers were near $133,000.",
+      summary: [
+        "You would design learning: courses, job aids, and the technology that delivers them.",
+        "BLS projects 2% growth for instructional coordinators from 2025 to 2035, slower than average. Corporate training demand is a separate market.",
+        "This path fits schools and employers. Teaching with technology and instructional design are the UAGC anchors.",
+        "A portfolio of a short course you designed will often matter more than the job title on the diploma."
+      ],
+      skills: [["Learning design", 94], ["Technology", 82], ["Writing", 80], ["Assessment", 74], ["Empathy", 78]],
+      outlier: {
+        title: "Customer-education lead or simulation designer",
+        text: "Software companies, hospitals, and the military hire people to teach a product or a procedure. The audience is not always a K-12 classroom."
+      },
+      programs: {
+        bachelor: prog("/online-degrees/bachelors/instructional-design", "BA in Instructional Design"),
+        master: prog("/online-degrees/masters/teaching-and-learning-with-technology", "MA in Teaching and Learning with Technology")
+      },
+      altProgram: prog("/online-degrees/masters/instructional-design-technology", "MS in Instructional Design & Technology")
+    },
+    {
+      id: "education",
+      tags: { teach: 5, lead: 2, people: 2 },
+      mission: 2,
+      career: Object.assign({ title: "Elementary school teacher" }, W.elemMean),
+      benchmark: "Secondary teachers had an annual mean near $76,320. Kindergarten-through-secondary education administrators had an annual mean near $116,100, and usually need state licensure.",
+      summary: [
+        "You would help people learn, whether the room is a school, a district office, or a training floor.",
+        "The chart uses the annual mean for elementary teachers because BLS does not publish an hourly median for this occupation.",
+        "Teacher certification is state-specific. Education Studies is not automatically a license.",
+        "If you want to teach adults at work, look also at instructional design and HR training."
+      ],
+      skills: [["Instruction", 92], ["Planning", 80], ["Communication", 88], ["Assessment", 74], ["Care", 78]],
+      outlier: {
+        title: "Corporate academy facilitator or education-program coordinator",
+        text: "Districts, nonprofits, and employers need people who can teach and also run the program around the teaching: schedules, coaches, and curriculum."
+      },
+      programs: {
+        associate: prog("/online-degrees/associate/early-childhood-education", "AA in Early Childhood Education"),
+        bachelor: prog("/online-degrees/bachelors/education-studies", "BA in Education Studies"),
+        master: prog("/online-degrees/masters/education", "MA in Education")
+      }
+    },
+    {
+      id: "specialed",
+      tags: { special: 6, teach: 3, care: 2 },
+      mission: 2,
+      career: Object.assign({ title: "Special education teacher" }, W.spedMean),
+      summary: [
+        "You would adapt instruction so learners with different needs can make progress.",
+        "The chart uses the annual mean for special education teachers in kindergarten and elementary settings.",
+        "Classroom certification is controlled by the state. Read the program page before you count on licensure.",
+        "The graduate match is the MA in Special Education. Differentiated instruction is the undergraduate neighbor."
+      ],
+      skills: [["Differentiation", 94], ["Advocacy", 84], ["Assessment", 78], ["Collaboration", 86], ["Patience", 88]],
+      outlier: {
+        title: "Learning-accessibility specialist for products or workplaces",
+        text: "Companies that build training, software, and assessments hire people who understand accommodations. It is special-education knowledge applied to design."
+      },
+      programs: {
+        bachelor: prog("/online-degrees/bachelors/early-childhood-development-differentiated-instruction", "BA in Early Childhood Development with Differentiated Instruction"),
+        master: prog("/online-degrees/masters/special-education", "MA in Special Education")
+      }
+    },
+    {
+      id: "behavior",
+      tags: { behavior: 6, people: 3, care: 2 },
+      mission: 2,
+      career: Object.assign({ title: "Social and community service manager" }, W.socMgr),
+      benchmark: "Social and human service assistants, a common early role, had a national median near $45,930. Clinical and counseling psychologists were near $100,590 and usually require a license this match does not assume.",
+      caution: "Psychology and counseling licenses are state-regulated and often require a specific clinical degree, supervised hours, and an exam. Do not treat a UAGC psychology degree as a license by itself.",
+      summary: [
+        "You would use an understanding of behavior to run programs, support people, or study how groups work.",
+        "The chart uses social and community service managers, a bachelor's-level leadership occupation, not a clinical license.",
+        "Research, HR, student support, and community programs are common nonclinical homes for this interest.",
+        "If you want to become a licensed counselor or psychologist, confirm your state board before you enroll."
+      ],
+      skills: [["Listening", 90], ["Behavior", 88], ["Writing", 72], ["Programs", 76], ["Ethics", 84]],
+      outlier: {
+        title: "User research or employee-experience research",
+        text: "Product teams and HR groups hire people who can watch behavior, interview with care, and report patterns. It is psychology outside a therapy room."
+      },
+      programs: {
+        bachelor: prog("/online-degrees/bachelors/psychology", "BA in Psychology"),
+        master: prog("/online-degrees/masters/psychology", "MA in Psychology")
+      },
+      altProgram: prog("/online-degrees/bachelors/applied-behavioral-science", "BA in Applied Behavioral Science")
+    },
+    {
+      id: "humansvc",
+      tags: { care: 5, community: 4, people: 3, mission: 2 },
+      mission: 4,
+      career: Object.assign({ title: "Social and community service manager" }, W.socMgr),
+      benchmark: "Substance abuse, behavioral disorder, and mental health counselors had a national median of $59,350, with 18% projected growth. Many of those jobs require a state credential.",
+      caution: "Case management and counseling credentials vary by state and employer. Confirm what your state requires before you treat the degree as a license.",
+      summary: [
+        "You would coordinate services so people can get housing, care, family support, or recovery resources.",
+        "Bachelor's roles include program staff and, with experience, program management.",
+        "The MA in Human Services and the BA in Health and Human Services are the direct matches.",
+        "The work is relational and administrative at the same time."
+      ],
+      skills: [["Case coordination", 90], ["Community", 86], ["Documentation", 74], ["Advocacy", 82], ["Boundaries", 80]],
+      outlier: {
+        title: "Reentry, veteran services, or benefits navigation",
+        text: "Courts, VA partners, shelters, and colleges need people who can walk someone through a system without losing the human part. That is human services with a specific front door."
+      },
+      programs: {
+        bachelor: prog("/online-degrees/bachelors/health-and-human-services", "BA in Health and Human Services"),
+        master: prog("/online-degrees/masters/human-services", "MA in Human Services")
+      },
+      altProgram: prog("/online-degrees/bachelors/sociology", "BA in Sociology")
+    },
+    {
+      id: "justice",
+      tags: { justice: 6, safety: 3, community: 2 },
+      career: Object.assign({ title: "Probation officer or correctional treatment specialist" }, W.probation),
+      summary: [
+        "You would work the human side of the justice system: supervision, treatment plans, and community safety.",
+        "The BA is in Social and Criminal Justice. The graduate degree is the MS in Criminal Justice.",
+        "Policing, courts, corrections, and victim services are different employers with different hiring rules.",
+        "Writing, ethics, and the ability to stay steady in conflict matter as much as interest in the law."
+      ],
+      skills: [["Judgment", 88], ["Writing", 80], ["Community", 76], ["Ethics", 90], ["Composure", 84]],
+      outlier: {
+        title: "Campus safety case work or corporate investigations support",
+        text: "Universities, insurers, and companies run investigations and threat-assessment teams. The work uses justice training and rarely starts in a patrol car."
+      },
+      programs: {
+        bachelor: prog("/online-degrees/bachelors/criminal-justice", "BA in Social and Criminal Justice"),
+        master: prog("/online-degrees/masters/criminal-justice", "MS in Criminal Justice")
+      },
+      bridge: prog("/online-degrees/associate/organizational-management", "AA in Organizational Management")
+    },
+    {
+      id: "emergency",
+      tags: { emergency: 6, safety: 3, risk: 3, military: 1 },
+      career: Object.assign({ title: "Emergency management director" }, W.emergency),
+      summary: [
+        "You would plan for disruption: storms, outages, security incidents, and the recovery after.",
+        "Director roles usually expect experience. The lower end of your range is the more honest planning number if you are new to the field.",
+        "The bachelor's match is Homeland Security and Emergency Management.",
+        "Government, hospitals, campuses, and large employers all run this function."
+      ],
+      skills: [["Planning", 92], ["Risk", 86], ["Coordination", 88], ["Writing", 74], ["Calm", 84]],
+      outlier: {
+        title: "Business continuity inside a hospital or supply chain",
+        text: "Private employers hire people to keep operations alive when a vendor, a system, or a building fails. It is emergency management with a corporate badge."
+      },
+      programs: {
+        associate: prog("/online-degrees/associate/military-studies", "AA in Military Studies"),
+        bachelor: prog("/online-degrees/bachelors/homeland-security-emergency-management", "BA in Homeland Security and Emergency Management"),
+        master: prog("/online-degrees/masters/leadership", "Master of Professional Studies in Leadership")
+      }
+    },
+    {
+      id: "compliance",
+      tags: { compliance: 6, risk: 3, detail: 3, safety: 1 },
+      career: Object.assign({ title: "Compliance officer" }, W.compliance),
+      summary: [
+        "You would interpret rules, test whether the organization follows them, and write findings people can act on.",
+        "Finance, healthcare, government, and tech all employ compliance staff.",
+        "The closest undergraduate homes are criminal justice, public-minded business, and homeland security.",
+        "The job rewards precise reading more than courtroom drama."
+      ],
+      skills: [["Rules", 92], ["Writing", 84], ["Investigation", 78], ["Ethics", 88], ["Detail", 90]],
+      outlier: {
+        title: "Research integrity, privacy reviews, or vendor-risk screening",
+        text: "Universities, hospitals, and software firms need people who can review a process against a standard. The subject might be privacy, grants, or third-party risk."
+      },
+      programs: {
+        bachelor: prog("/online-degrees/bachelors/criminal-justice", "BA in Social and Criminal Justice"),
+        master: prog("/online-degrees/masters/criminal-justice", "MS in Criminal Justice")
+      },
+      bridge: prog("/online-degrees/associate/business", "AA in Business")
+    },
+    {
+      id: "military",
+      tags: { military: 6, lead: 2, safety: 2 },
+      career: Object.assign({ title: "Logistician" }, W.logistics),
+      summary: [
+        "You would connect service, security, and leadership with a civilian career that values that experience.",
+        "Logistics, emergency management, and organizational leadership are the most direct translations.",
+        "The associate degree in Military Studies is built for this interest and can ladder toward a bachelor's.",
+        "Hiring still depends on the civilian skill you can show: coordination, writing, technical work, or supervision."
+      ],
+      skills: [["Leadership", 86], ["Logistics", 80], ["Discipline", 78], ["Writing", 70], ["Adaptability", 84]],
+      outlier: {
+        title: "Veteran career services or defense-program coordination",
+        text: "Colleges, nonprofits, and contractors hire people who can translate military experience for civilian teams, run a program, and keep a mission on schedule."
+      },
+      programs: {
+        associate: prog("/online-degrees/associate/military-studies", "AA in Military Studies"),
+        bachelor: prog("/online-degrees/bachelors/homeland-security-emergency-management", "BA in Homeland Security and Emergency Management"),
+        master: prog("/online-degrees/masters/leadership", "Master of Professional Studies in Leadership")
+      }
+    },
+    {
+      id: "comms",
+      tags: { writing: 5, create: 4, marketing: 2 },
+      creative: 3,
+      career: Object.assign({ title: "Public relations specialist" }, W.pr),
+      benchmark: "Writers and authors had a national median near $76,920. Technical writers were near $90,400.",
+      summary: [
+        "You would shape messages for the people an organization needs to inform, persuade, or steady.",
+        "PR, internal communications, and content are the usual doors. The BA in Communication Studies is the direct match.",
+        "A portfolio of writing beats a vague claim that you are a good communicator.",
+        "Liberal arts is the broader alternative if you want ideas and writing without a marketing core."
+      ],
+      skills: [["Writing", 94], ["Judgment", 80], ["Audience", 84], ["Editing", 78], ["Research", 70]],
+      outlier: {
+        title: "Grant writing or UX writing",
+        text: "Nonprofits need proposals. Product teams need the words inside software. Both pay for clear writing and are easy to miss if you only search for 'communications manager.'"
+      },
+      programs: {
+        bachelor: prog("/online-degrees/bachelors/communication-studies", "BA in Communication Studies"),
+        master: prog("/online-degrees/masters/organizational-management", "MA in Organizational Management", "IACBE-accredited business program.")
+      },
+      altProgram: prog("/online-degrees/bachelors/liberal-arts", "BA in Liberal Arts"),
+      bridge: prog("/online-degrees/associate/organizational-management", "AA in Organizational Management")
+    },
+    {
+      id: "liberal",
+      tags: { writing: 4, create: 3, people: 2, analytics: 1 },
+      creative: 3,
+      career: Object.assign({ title: "Writer or author" }, W.writers),
+      benchmark: "Public relations specialists had a national median near $74,760, and many liberal-arts graduates start there.",
+      summary: [
+        "You would use reading, writing, and context to do work that organizations still have to staff.",
+        "Freelance writing is only one outcome. Training content, research support, and communications roles are more common first jobs.",
+        "The BA in Liberal Arts and the BA in Social Science are the broadest UAGC fits.",
+        "Pair the degree with a visible skill: writing samples, research, a language, or a technical tool."
+      ],
+      skills: [["Writing", 92], ["Critical reading", 88], ["Research", 76], ["Synthesis", 84], ["Curiosity", 80]],
+      outlier: {
+        title: "User-research notes, museum interpretation, or policy briefs",
+        text: "Teams that build products, exhibits, and public programs need people who can listen, read a source, and write the version a nonexpert will finish."
+      },
+      programs: {
+        bachelor: prog("/online-degrees/bachelors/liberal-arts", "BA in Liberal Arts"),
+        master: prog("/online-degrees/masters/organizational-management", "MA in Organizational Management")
+      },
+      altProgram: prog("/online-degrees/bachelors/social-science", "BA in Social Science")
+    }
+  ];
+
+  var ENERGY = [
+    { id: "teams", label: "Guiding teams and getting work finished", hint: "Plans, people, deadlines, and the meeting that unsticks a project.", tags: { lead: 2, ops: 2, deliver: 2 } },
+    { id: "learn", label: "Helping people learn", hint: "Teaching, coaching, course design, or leading a learning program.", tags: { teach: 3, people: 1 } },
+    { id: "tech", label: "Building or protecting technology", hint: "Systems, software, security, data, or the bridge between business and IT.", tags: { tech: 3 } },
+    { id: "health", label: "Supporting health and wellbeing", hint: "Care organizations, prevention, health data, or a nursing degree you already qualify for.", tags: { health: 3, care: 1 } },
+    { id: "people", label: "Understanding people and communities", hint: "Behavior, services, research, and how groups actually function.", tags: { people: 2, behavior: 2, community: 1 } },
+    { id: "safety", label: "Protecting communities and managing risk", hint: "Justice, emergency planning, compliance, or military-connected work.", tags: { safety: 3, risk: 1 } },
+    { id: "messages", label: "Shaping messages, stories, and ideas", hint: "Writing, campaigns, communication, or a broad liberal-arts path.", tags: { create: 2, writing: 2 } },
+    { id: "numbers", label: "Working with money, data, and operations", hint: "Accounting, finance, analysis, supply chain, or how the business runs.", tags: { numbers: 3 } }
+  ];
+
+  var FOCUS = {
+    teams: [
+      { id: "proj", label: "Projects, schedules, and delivery", hint: "You like a finish line and a plan to reach it.", tags: { deliver: 4, ops: 2, lead: 1 } },
+      { id: "hr", label: "People, hiring, and culture", hint: "The work of building a team, not only assigning tasks.", tags: { hr: 4, people: 2 } },
+      { id: "org", label: "How a whole organization works", hint: "Strategy, change, and leading across functions.", tags: { lead: 4, ops: 2 } },
+      { id: "supply", label: "Operations and the flow of work", hint: "Process, cost, vendors, and making the system smoother.", tags: { ops: 3, supply: 2, deliver: 1 } }
+    ],
+    learn: [
+      { id: "children", label: "Young children and families", hint: "Early learning, childcare, and the adults around a child.", tags: { children: 4, teach: 2, care: 2 } },
+      { id: "learntech", label: "Teaching and learning with technology", hint: "Courses, job aids, and the tools that deliver them.", tags: { design: 4, tech: 2, teach: 1 } },
+      { id: "specialed", label: "Learners who need a different path", hint: "Differentiation, access, and special education.", tags: { special: 4, teach: 2, care: 1 } },
+      { id: "adulttrain", label: "Training adults at work", hint: "Corporate academies, onboarding, and skill building.", tags: { design: 2, hr: 2, teach: 2 } },
+      { id: "edlead", label: "Leading education programs", hint: "Curriculum, teams of educators, or a school-related organization.", tags: { teach: 2, lead: 3 } }
+    ],
+    tech: [
+      { id: "security", label: "Cybersecurity and risk", hint: "Protecting systems, data, and the people who depend on them.", tags: { security: 4, tech: 1, risk: 2 } },
+      { id: "itsupport", label: "Networks, support, and IT systems", hint: "Keeping the technology running and explaining it.", tags: { support: 4, tech: 2, systems: 1 } },
+      { id: "software", label: "Software and applications", hint: "Building, testing, and improving what people click.", tags: { build: 4, tech: 2 } },
+      { id: "bissystems", label: "Connecting business and technology", hint: "Requirements, rollouts, and translating both sides.", tags: { systems: 4, tech: 1, ops: 1 } },
+      { id: "datawork", label: "Data and analytics", hint: "Patterns, evidence, and a recommendation at the end.", tags: { data: 4, analytics: 3, numbers: 1 } }
+    ],
+    health: [
+      { id: "hcadmin", label: "Running healthcare organizations", hint: "Clinics, departments, budgets, and patient experience.", tags: { admin: 4, health: 2, lead: 1 } },
+      { id: "wellness", label: "Wellness, prevention, and coaching", hint: "Habits, programs, and health before a crisis.", tags: { wellness: 4, health: 1, care: 1 } },
+      { id: "him", label: "Health information and records", hint: "Data, privacy, and the systems behind the chart.", tags: { him: 4, data: 2, health: 1 } },
+      { id: "publichealth", label: "Public and community health", hint: "Populations, prevention programs, and health equity.", tags: { community: 3, health: 2, mission: 2 } },
+      { id: "rn", label: "I am already a licensed RN", hint: "You want the bachelor's built for current registered nurses.", tags: { rn: 5, care: 2, health: 1 }, flags: { rn: true } }
+    ],
+    people: [
+      { id: "behavior", label: "Psychology and behavior", hint: "Why people do what they do, in life or at work.", tags: { behavior: 4, people: 2 } },
+      { id: "humansvc", label: "Human services and community support", hint: "Programs that help people navigate hard systems.", tags: { care: 3, community: 3, mission: 2 } },
+      { id: "socialresearch", label: "Social questions and applied research", hint: "Sociology, social science, and evidence about groups.", tags: { analytics: 2, community: 2, writing: 2 } },
+      { id: "orgbehavior", label: "People at work and leadership", hint: "Teams, culture, and organizational behavior.", tags: { lead: 2, people: 2, hr: 2 } }
+    ],
+    safety: [
+      { id: "justice", label: "Criminal and social justice", hint: "Courts, corrections, community supervision, and reform.", tags: { justice: 4, safety: 1, community: 1 } },
+      { id: "emergency", label: "Homeland security and emergency management", hint: "Planning for disruption and coordinating the response.", tags: { emergency: 4, safety: 1, risk: 2 } },
+      { id: "compliance", label: "Compliance, investigations, and rules", hint: "Policies, reviews, and whether the organization did what it said.", tags: { compliance: 4, risk: 2, detail: 2 } },
+      { id: "military", label: "Military-connected study and leadership", hint: "Service experience, security affairs, or a civilian translation of both.", tags: { military: 4, lead: 1, safety: 1 } }
+    ],
+    messages: [
+      { id: "mkt", label: "Marketing and audiences", hint: "Research, campaigns, and whether the message worked.", tags: { marketing: 4, create: 1 } },
+      { id: "comms", label: "Communication and storytelling", hint: "PR, internal messages, and writing people finish.", tags: { writing: 3, create: 3 } },
+      { id: "traincontent", label: "Learning content and explainers", hint: "Courses, help content, and teaching through writing.", tags: { design: 2, writing: 3, teach: 1 } },
+      { id: "liberal", label: "Ideas, culture, and broad study", hint: "Liberal arts or social science applied to real jobs.", tags: { writing: 2, create: 2, people: 1 } }
+    ],
+    numbers: [
+      { id: "accounting", label: "Accounting and the integrity of the books", hint: "Records, audits, and explaining what happened.", tags: { accounting: 4, numbers: 1, detail: 2 } },
+      { id: "finance", label: "Finance, forecasting, and decisions", hint: "Where money should go next, and why.", tags: { finance: 4, numbers: 1, analytics: 2 } },
+      { id: "bizops", label: "Business operations and analysis", hint: "How the organization performs, and how to improve it.", tags: { ops: 3, analytics: 2, numbers: 1 } },
+      { id: "supplycost", label: "Supply chain and the cost of movement", hint: "Goods, vendors, inventory, and timing.", tags: { supply: 4, ops: 1, numbers: 1 } }
+    ]
+  };
+
+  var SKILL = {
+    teams: [
+      { id: "sk-stake", label: "Leading without a heavy title", hint: "Influence, agendas, and follow-through.", tags: { lead: 2, deliver: 1 } },
+      { id: "sk-budget", label: "Budgets and resource tradeoffs", hint: "Money as a planning tool.", tags: { numbers: 2, ops: 1 } },
+      { id: "sk-process", label: "Fixing a messy process", hint: "Find the bottleneck and redesign the handoff.", tags: { ops: 2, analytics: 1 } },
+      { id: "sk-hire", label: "Hiring and developing people", hint: "The HR craft, even if you are not in HR yet.", tags: { hr: 2, people: 1 } }
+    ],
+    learn: [
+      { id: "sk-lesson", label: "Designing a learning experience", hint: "Objectives, practice, and feedback.", tags: { design: 2, teach: 1 } },
+      { id: "sk-coach", label: "Coaching one person at a time", hint: "Mentoring, conferencing, and care.", tags: { care: 1, teach: 2 } },
+      { id: "sk-edtech", label: "Learning technology", hint: "Platforms, media, and digital classrooms.", tags: { tech: 2, design: 1 } },
+      { id: "sk-include", label: "Inclusive instruction", hint: "Access, differentiation, and support plans.", tags: { special: 2, teach: 1 } }
+    ],
+    tech: [
+      { id: "sk-sec", label: "Security fundamentals", hint: "Risk, access, and response.", tags: { security: 2, risk: 1 } },
+      { id: "sk-code", label: "Building software", hint: "Applications, scripts, or the logic behind them.", tags: { build: 2, tech: 1 } },
+      { id: "sk-net", label: "Networks and support", hint: "The systems people notice only when they fail.", tags: { support: 2, systems: 1 } },
+      { id: "sk-data", label: "Turning data into a decision", hint: "Analysis with a point of view.", tags: { data: 2, analytics: 1 } },
+      { id: "sk-bridge", label: "Explaining technology to everyone else", hint: "Requirements, training, and rollout.", tags: { systems: 2, writing: 1 } }
+    ],
+    health: [
+      { id: "sk-hops", label: "Healthcare operations", hint: "Staffing, flow, quality, and cost.", tags: { admin: 2, ops: 1 } },
+      { id: "sk-well", label: "Wellness program design", hint: "Prevention people will actually join.", tags: { wellness: 2, care: 1 } },
+      { id: "sk-hdata", label: "Health data and records", hint: "Privacy, accuracy, and reporting.", tags: { him: 2, data: 1 } },
+      { id: "sk-community", label: "Community health outreach", hint: "Populations, trust, and programs.", tags: { community: 2, mission: 1 } },
+      { id: "sk-rnlead", label: "Nursing leadership beyond the bedside", hint: "Only relevant if you are already an RN.", tags: { rn: 2, lead: 1 } }
+    ],
+    people: [
+      { id: "sk-listen", label: "Counseling-style listening", hint: "Supportive conversations. Not a license by itself.", tags: { behavior: 2, care: 1 } },
+      { id: "sk-case", label: "Case documentation and coordination", hint: "Services, notes, and follow-up.", tags: { community: 2, detail: 1 } },
+      { id: "sk-research", label: "Research methods", hint: "Questions, evidence, and careful claims.", tags: { analytics: 2, writing: 1 } },
+      { id: "sk-group", label: "Facilitating a group", hint: "Classes, teams, or community meetings.", tags: { people: 2, teach: 1 } }
+    ],
+    safety: [
+      { id: "sk-invest", label: "Investigation writing", hint: "Facts, timelines, and a clean report.", tags: { compliance: 2, writing: 1 } },
+      { id: "sk-plan", label: "Emergency planning", hint: "Scenarios, roles, and recovery.", tags: { emergency: 2, risk: 1 } },
+      { id: "sk-policy", label: "Policy and compliance", hint: "Rules applied to real operations.", tags: { compliance: 2, detail: 1 } },
+      { id: "sk-risk", label: "Risk analysis", hint: "What could fail, and what to do first.", tags: { risk: 2, analytics: 1 } }
+    ],
+    messages: [
+      { id: "sk-campaign", label: "Campaign planning", hint: "Audience, offer, channel, and measurement.", tags: { marketing: 2, create: 1 } },
+      { id: "sk-write", label: "Long-form and short-form writing", hint: "Pieces people can use.", tags: { writing: 2, create: 1 } },
+      { id: "sk-uxwrite", label: "Words inside products and courses", hint: "Interfaces, lessons, and help content.", tags: { writing: 2, design: 1 } },
+      { id: "sk-grants", label: "Proposals and persuasive briefs", hint: "Grants, memos, and cases for support.", tags: { writing: 2, mission: 1 } }
+    ],
+    numbers: [
+      { id: "sk-statements", label: "Financial statements", hint: "What the books are saying.", tags: { accounting: 2, detail: 1 } },
+      { id: "sk-forecast", label: "Forecasting", hint: "A defended view of what happens next.", tags: { finance: 2, analytics: 1 } },
+      { id: "sk-metrics", label: "Operations metrics", hint: "The few numbers that show if work is healthy.", tags: { ops: 2, data: 1 } },
+      { id: "sk-chain", label: "Supply and cost tradeoffs", hint: "Speed, inventory, and price.", tags: { supply: 2, numbers: 1 } }
+    ]
+  };
+
+  var EFFORT = [
+    { id: "coordinate", label: "Coordinating people and deadlines", hint: "The work moves because you keep the threads together.", tags: { lead: 1, deliver: 2, ops: 1 } },
+    { id: "teach", label: "Teaching, coaching, or designing learning", hint: "Someone understands more after you have done your job.", tags: { teach: 2, design: 1 } },
+    { id: "systems", label: "Systems, data, or security", hint: "Screens, logic, and protecting how things run.", tags: { tech: 2, data: 1 } },
+    { id: "care", label: "Care, health, or community programs", hint: "A person or a community is better supported.", tags: { care: 2, health: 1, community: 1 } },
+    { id: "research", label: "Research, writing, or messaging", hint: "You make sense of something, then you make it clear.", tags: { writing: 2, analytics: 1, create: 1 } }
+  ];
+
+  var GOALS = [
+    { id: "change", label: "Help me change fields", hint: "A new kind of work, not only a new employer.", tags: {} },
+    { id: "advance", label: "Help me move up where I already work", hint: "Same field, more responsibility.", tags: { lead: 1 } },
+    { id: "graduate", label: "Prepare me for a graduate credential", hint: "You want master's or doctoral study in view.", tags: {} },
+    { id: "mission", label: "Point me toward mission-driven work", hint: "Purpose weighs as much as the paycheck.", tags: { mission: 3 } },
+    { id: "skill", label: "Build a specialized technical skill", hint: "A craft you can name on a resume.", tags: { tech: 1, detail: 1 } },
+    { id: "compare", label: "I am still comparing directions", hint: "Show a strong option and a real alternative.", tags: {} }
+  ];
+
+  var LEVELS = [
+    { id: "associate", label: "Associate degree", hint: "A shorter start, or credits you can stack later.", tags: {} },
+    { id: "bachelor", label: "Bachelor's degree", hint: "The usual door into a new professional field.", tags: {} },
+    { id: "master", label: "Master's degree", hint: "Deeper practice or a step toward leadership.", tags: {} },
+    { id: "doctoral", label: "Doctoral degree", hint: "UAGC's doctorate is in organizational leadership.", tags: { lead: 1 } },
+    { id: "unsure", label: "I am not sure. Recommend a level.", hint: "We will use your experience and goal to choose.", tags: {} }
+  ];
+
+  var PRIORITY = [
+    { id: "earnings", label: "Earning potential", hint: "Put weight on occupations with higher published pay.", tags: { earnings: 2 } },
+    { id: "mission", label: "A mission I care about", hint: "Service, learning, health, or community.", tags: { mission: 2 } },
+    { id: "leadership", label: "Leadership responsibility", hint: "People, programs, or a function to run.", tags: { lead: 2 } },
+    { id: "stability", label: "Steady demand", hint: "Fields where BLS projects stronger growth when we have that figure.", tags: { stability: 1 } },
+    { id: "creative", label: "A creative or less traditional route", hint: "We will lean into the unusual path, not only the obvious job title.", tags: { creative: 3, create: 1 } }
+  ];
+
+  var EXPERIENCE = [
+    { id: "exploring", label: "I am exploring this kind of work", hint: "Little related experience. Pay is placed toward the lower part of the range.", tags: {} },
+    { id: "careerchange", label: "I have years of work, in a different field", hint: "Experience counts for school. Pay is still estimated like someone new to the occupation.", tags: {} },
+    { id: "building", label: "About 3 to 7 years in a related field", hint: "You know the work and want the degree to catch up.", tags: {} },
+    { id: "established", label: "About 8 to 15 years in a related field", hint: "A mid-to-senior band on the national wage distribution.", tags: {} },
+    { id: "leading", label: "I lead people or a function, or I have 15+ years", hint: "The top portion of the published range. Not a chief-executive salary.", tags: { lead: 1 } }
+  ];
+
+  var answers = {};
+  var step = 0;
+  var resultsMode = false;
+
+  function esc(s) {
+    return String(s == null ? "" : s).replace(/[&<>"']/g, function (c) {
+      return { "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;", "'": "&#39;" }[c];
+    });
+  }
+
+  function money(n) {
+    return "$" + Math.round(n).toLocaleString("en-US");
+  }
+
+  function questions() {
+    var energy = answers.energy || "teams";
+    return [
+      { id: "energy", prompt: "What kind of work gives you energy?", help: "Pick the closest fit. The next question gets more specific.", options: ENERGY },
+      { id: "focus", prompt: "Which focus fits you best?", help: "These options follow from your first answer.", options: FOCUS[energy] },
+      { id: "effort", prompt: "Where do you want to spend most of your effort?", help: "This can agree with your first answer or pull in a second interest.", options: EFFORT },
+      { id: "goal", prompt: "What should this degree do first?", help: "We use this to choose a level when you are unsure, and to shape the career summary.", options: GOALS },
+      { id: "level", prompt: "Which degree level are you considering?", help: "Every option is a real UAGC level. Doctoral study here is organizational leadership.", options: LEVELS },
+      { id: "skill", prompt: "Which skill do you most want to build?", help: "One skill, so the match can tilt toward a specialty.", options: SKILL[energy] },
+      { id: "priority", prompt: "What should we weigh most heavily?", help: "You still get more than one path. This decides what rises to the top.", options: PRIORITY },
+      { id: "experience", prompt: "How much related experience do you have?", help: "We use this only to place you on the national wage distribution for the occupation. It is not a credit evaluation.", options: EXPERIENCE },
+      { id: "profile", type: "profile", prompt: "Where are you based?", help: "Your state sets the Census region. Pay is adjusted by region, then we show your results." }
+    ];
+  }
+
+  function collectTags() {
+    var tags = {};
+    var flags = {};
+    questions().forEach(function (q) {
+      if (!q.options) return;
+      var chosen = null;
+      q.options.forEach(function (o) { if (o.id === answers[q.id]) chosen = o; });
+      if (!chosen) return;
+      Object.keys(chosen.tags || {}).forEach(function (k) { tags[k] = (tags[k] || 0) + chosen.tags[k]; });
+      Object.keys(chosen.flags || {}).forEach(function (k) { flags[k] = chosen.flags[k]; });
+    });
+    return { tags: tags, flags: flags };
+  }
+
+  function scoreFamily(family, bag) {
+    if (family.requiresRn && !bag.flags.rn) return -1;
+    var score = 0;
+    Object.keys(family.tags).forEach(function (k) {
+      score += (bag.tags[k] || 0) * family.tags[k];
+    });
+    if ((bag.tags.mission || 0) > 0 && family.mission) score += family.mission * bag.tags.mission;
+    if ((bag.tags.creative || 0) > 0 && family.creative) score += family.creative * bag.tags.creative;
+    if (answers.priority === "earnings" && family.career.median >= 100000) score += 4;
+    if (answers.priority === "stability" && family.career.outlook && family.career.outlook >= 10) score += 4;
+    if (answers.level === "doctoral" && family.doctoralFit) score += 14;
+    if (answers.level === "associate" && family.programs.associate) score += 3;
+    if (answers.goal === "graduate" && family.programs.master) score += 2;
+    return score;
+  }
+
+  function decideLevel(family) {
+    var want = answers.level;
+    if (want === "associate") return family.programs.associate ? "associate" : "bachelor";
+    if (want === "bachelor") return family.programs.bachelor ? "bachelor" : "master";
+    if (want === "master") return family.programs.master ? "master" : "bachelor";
+    if (want === "doctoral") {
+      if (family.doctoralFit && family.programs.doctoral) return "doctoral";
+      return family.programs.master ? "master" : "bachelor";
+    }
+    if (answers.goal === "graduate" || answers.experience === "leading" || answers.experience === "established") {
+      if (family.programs.master && (answers.goal === "graduate" || answers.experience === "leading")) return "master";
+    }
+    if (answers.goal === "change" && answers.experience === "exploring" && family.programs.associate) return "associate";
+    return family.programs.bachelor ? "bachelor" : (family.programs.master ? "master" : "associate");
+  }
+
+  function careerFor(family, level) {
+    if ((level === "master" || level === "doctoral") && family.graduateCareer) return family.graduateCareer;
+    return family.career;
+  }
+
+  function regionKey() {
+    return STATE_REGION[answers.state] || "other";
+  }
+
+  function payBand(career, experience, region) {
+    var median = career.median;
+    var estimated = career.p10 == null || career.p90 == null;
+    var p10 = estimated ? Math.round(median * 0.68) : career.p10;
+    var p90 = estimated ? Math.round(median * 1.6) : career.p90;
+    var spans = {
+      exploring: [0, 0.42],
+      careerchange: [0, 0.42],
+      building: [0.28, 0.55],
+      established: [0.43, 0.72],
+      leading: [0.62, 1]
+    };
+    var span = spans[experience] || spans.building;
+    var idx = REGIONS[region].index;
+    function raw(t) { return p10 + (p90 - p10) * t; }
+    var low = Math.round((raw(span[0]) * idx) / 1000) * 1000;
+    var high = Math.round((raw(span[1]) * idx) / 1000) * 1000;
+    if (high <= low) high = low + 1000;
+    return {
+      low: low,
+      high: high,
+      national: median,
+      estimated: estimated,
+      wageKind: career.wageKind || "median",
+      index: idx
+    };
+  }
+
+  function programFor(family, level) {
+    var item = family.programs[level] || family.programs.bachelor || family.programs.master || family.programs.associate;
+    var used = family.programs[level] ? level : (family.programs.bachelor ? "bachelor" : (family.programs.master ? "master" : "associate"));
+    return { title: item.title, url: item.url, note: item.note || "", level: used, asked: level };
+  }
+
+  function rank() {
+    var bag = collectTags();
+    var scored = FAMILIES.map(function (family) {
+      return { family: family, score: scoreFamily(family, bag) };
+    }).filter(function (row) { return row.score >= 0; });
+    scored.sort(function (a, b) { return b.score - a.score || a.family.id.localeCompare(b.family.id); });
+    var best = scored.length ? scored[0].score : 1;
+    if (best < 1) best = 1;
+    var picked = scored.slice(0, 3);
+    if (answers.level === "doctoral") {
+      var org = null;
+      scored.forEach(function (row) { if (row.family.id === "org") org = row; });
+      if (org) {
+        picked = [org].concat(picked.filter(function (row) { return row.family.id !== "org"; })).slice(0, 3);
+      }
+    }
+    return picked.map(function (row, index) {
+      var level = decideLevel(row.family);
+      if (answers.level === "doctoral" && row.family.doctoralFit) level = "doctoral";
+      var program = programFor(row.family, level);
+      var career = careerFor(row.family, program.level);
+      var pay = payBand(career, answers.experience || "building", regionKey());
+      return {
+        family: row.family,
+        score: row.score,
+        alignment: Math.max(8, Math.round(100 * row.score / best)),
+        rank: index,
+        pinned: answers.level === "doctoral" && row.family.id === "org",
+        program: program,
+        career: career,
+        pay: pay
+      };
+    });
+  }
+
+  function labelFor(list, id) {
+    var found = "";
+    (list || []).forEach(function (item) { if (item.id === id) found = item.label; });
+    return found;
+  }
+
+  function experienceLabel() {
+    return labelFor(EXPERIENCE, answers.experience);
+  }
+
+  function save() {
+    try {
+      sessionStorage.setItem(STORE, JSON.stringify({ answers: answers, step: step, resultsMode: resultsMode }));
+    } catch (err) { /* private mode */ }
+  }
+
+  function restore() {
+    try {
+      var raw = sessionStorage.getItem(STORE);
+      if (!raw) return;
+      var data = JSON.parse(raw);
+      if (data && data.answers) {
+        answers = data.answers;
+        step = data.step || 0;
+        resultsMode = !!data.resultsMode;
+      }
+    } catch (err) {
+      sessionStorage.removeItem(STORE);
+    }
+  }
+
+  function currentList() {
+    return questions();
+  }
+
+  function render() {
+    var main = document.getElementById("uf-main");
+    var dek = document.getElementById("uf-dek");
+    if (resultsMode) {
+      dek.style.display = "none";
+      main.innerHTML = renderResults(rank());
+      main.querySelector("#uf-pdf").addEventListener("click", downloadPdf);
+      main.querySelector("#uf-restart").addEventListener("click", restart);
+      var back = main.querySelector("#uf-back-results");
+      if (back) back.addEventListener("click", function () { resultsMode = false; step = 0; save(); render(); });
+      return;
+    }
+    var list = currentList();
+    if (step < 0) step = 0;
+    if (step >= list.length) step = list.length - 1;
+    dek.style.display = step === 0 ? "" : "none";
+    var q = list[step];
+    var html = "";
+    html += '<div class="uf-progress"><span>Question ' + (step + 1) + ' of ' + list.length + '</span><span>' + Math.round(((step) / list.length) * 100) + '% complete</span></div>';
+    html += '<div class="uf-bar" aria-hidden="true"><span style="width:' + Math.round(((step + 1) / list.length) * 100) + '%"></span></div>';
+    html += "<h2 id='uf-q'>" + esc(q.prompt) + "</h2>";
+    html += "<p class='uf-help'>" + esc(q.help) + "</p>";
+    if (q.type === "profile") html += renderProfile();
+    else html += renderOptions(q);
+    html += '<p class="uf-error" id="uf-error" role="alert"></p>';
+    html += '<div class="uf-nav">';
+    html += '<button type="button" class="uf-btn uf-btn-ghost" id="uf-back"' + (step === 0 ? " disabled" : "") + ">Back</button>";
+    html += '<button type="button" class="uf-btn uf-btn-primary" id="uf-next">' + (step === list.length - 1 ? "See my results" : "Next") + "</button>";
+    html += "</div>";
+    main.innerHTML = html;
+    var heading = document.getElementById("uf-q");
+    if (heading) { heading.setAttribute("tabindex", "-1"); heading.focus(); }
+    if (q.type !== "profile") bindOptions(q);
+    else bindProfile();
+    document.getElementById("uf-back").addEventListener("click", function () {
+      if (step > 0) { step -= 1; save(); render(); }
+    });
+    document.getElementById("uf-next").addEventListener("click", onNext);
+  }
+
+  function renderOptions(q) {
+    var html = '<div role="radiogroup" aria-labelledby="uf-q" class="uf-options" id="uf-options">';
+    q.options.forEach(function (o) {
+      var on = answers[q.id] === o.id ? "true" : "false";
+      html += '<button type="button" class="uf-opt" role="radio" aria-checked="' + on + '" data-id="' + esc(o.id) + '">';
+      html += '<span class="uf-opt-label">' + esc(o.label) + "</span>";
+      html += '<span class="uf-opt-hint">' + esc(o.hint) + "</span>";
+      html += "</button>";
+    });
+    html += "</div>";
+    return html;
+  }
+
+  function bindOptions(q) {
+    var group = document.getElementById("uf-options");
+    var buttons = Array.prototype.slice.call(group.querySelectorAll("[role='radio']"));
+    function select(btn) {
+      answers[q.id] = btn.getAttribute("data-id");
+      if (q.id === "energy") {
+        var focusOk = (FOCUS[answers.energy] || []).some(function (o) { return o.id === answers.focus; });
+        var skillOk = (SKILL[answers.energy] || []).some(function (o) { return o.id === answers.skill; });
+        if (!focusOk) delete answers.focus;
+        if (!skillOk) delete answers.skill;
+      }
+      buttons.forEach(function (b) { b.setAttribute("aria-checked", b === btn ? "true" : "false"); });
+      var error = document.getElementById("uf-error");
+      if (error) error.textContent = "";
+      save();
+    }
+    buttons.forEach(function (btn, index) {
+      btn.addEventListener("click", function () { select(btn); });
+      btn.addEventListener("keydown", function (e) {
+        var next = index;
+        if (e.key === "ArrowDown" || e.key === "ArrowRight") next = (index + 1) % buttons.length;
+        else if (e.key === "ArrowUp" || e.key === "ArrowLeft") next = (index - 1 + buttons.length) % buttons.length;
+        else return;
+        e.preventDefault();
+        buttons[next].focus();
+        select(buttons[next]);
+      });
+    });
+  }
+
+  function renderProfile() {
+    var groups = [
+      ["Northeast", ["CT", "ME", "MA", "NH", "RI", "VT", "NJ", "NY", "PA"]],
+      ["Midwest", ["IL", "IN", "MI", "OH", "WI", "IA", "KS", "MN", "MO", "NE", "ND", "SD"]],
+      ["South", ["DE", "DC", "FL", "GA", "MD", "NC", "SC", "VA", "WV", "AL", "KY", "MS", "TN", "AR", "LA", "OK", "TX"]],
+      ["West", ["AZ", "CO", "ID", "MT", "NV", "NM", "UT", "WY", "AK", "CA", "HI", "OR", "WA"]],
+      ["Another location", ["INTL"]]
+    ];
+    var html = '<div class="uf-field"><label class="uf-label" for="uf-state">State or location</label>';
+    html += '<select id="uf-state"><option value="">Select a state</option>';
+    groups.forEach(function (g) {
+      html += '<optgroup label="' + esc(g[0]) + '">';
+      g[1].forEach(function (code) {
+        var sel = answers.state === code ? " selected" : "";
+        html += '<option value="' + code + '"' + sel + ">" + esc(STATE_NAME[code]) + "</option>";
+      });
+      html += "</optgroup>";
+    });
+    html += "</select>";
+    html += '<p class="uf-region-readout" id="uf-region-readout"></p>';
+    html += '<div id="uf-nc"></div></div>';
+    html += '<div class="uf-field"><label class="uf-label" for="uf-name">First name on your PDF (optional)</label>';
+    html += '<input id="uf-name" type="text" maxlength="40" autocomplete="given-name" value="' + esc(answers.name || "") + '" placeholder="Alex">';
+    html += "</div>";
+    return html;
+  }
+
+  function bindProfile() {
+    var select = document.getElementById("uf-state");
+    var name = document.getElementById("uf-name");
+    function sync() {
+      answers.state = select.value;
+      answers.name = name.value.trim();
+      var key = regionKey();
+      var readout = document.getElementById("uf-region-readout");
+      if (answers.state && answers.state !== "INTL") {
+        readout.textContent = STATE_NAME[answers.state] + " is in the " + REGIONS[key].label + " region. Pay ranges use that region.";
+      } else if (answers.state === "INTL") {
+        readout.textContent = "Outside the U.S., ranges stay at the national figure. Local pay and enrollment rules can differ.";
+      } else readout.textContent = "";
+      var nc = document.getElementById("uf-nc");
+      nc.innerHTML = answers.state === "NC"
+        ? '<p class="uf-note">UAGC is currently not accepting new enrollments in North Carolina. Confirm the latest status on uagc.edu before you apply. Your results will still show programs and regional pay.</p>'
+        : "";
+      save();
+    }
+    select.addEventListener("change", sync);
+    name.addEventListener("input", sync);
+    sync();
+  }
+
+  function onNext() {
+    var q = currentList()[step];
+    var error = document.getElementById("uf-error");
+    if (q.type === "profile") {
+      if (!answers.state) {
+        error.textContent = "Select your state so we can set the region.";
+        return;
+      }
+    } else if (!answers[q.id]) {
+      error.textContent = "Choose one option to continue.";
+      return;
+    }
+    if (step < currentList().length - 1) {
+      step += 1;
+      save();
+      render();
+      return;
+    }
+    resultsMode = true;
+    save();
+    render();
+    var title = document.getElementById("uf-title");
+    if (title) { title.setAttribute("tabindex", "-1"); }
+  }
+
+  function restart() {
+    answers = {};
+    step = 0;
+    resultsMode = false;
+    try { sessionStorage.removeItem(STORE); } catch (err) { /* ignore */ }
+    render();
+  }
+
+  function levelWord(level) {
+    return { associate: "Associate", bachelor: "Bachelor's", master: "Master's", doctoral: "Doctoral", unsure: "We'll recommend a level" }[level] || level;
+  }
+
+  function wagePhrase(career) {
+    if (career.wageKind === "mean") return "U.S. annual mean wage";
+    return "U.S. median pay";
+  }
+
+  function renderResults(rows) {
+    var region = REGIONS[regionKey()];
+    var place = answers.state === "INTL" ? "outside the United States" : STATE_NAME[answers.state];
+    var name = answers.name ? esc(answers.name) + ", here" : "Here";
+    var html = "";
+    html += '<p class="uf-kicker" style="color:#AB0520">Your results</p>';
+    html += "<h2 style='margin-top:6px'>" + name + " is a plan for " + esc(place) + ".</h2>";
+    html += "<p class='uf-help'>These are planning matches, not offers of admission, jobs, or pay. The " + esc(region.label) + " adjustment is a rounded factor (" + region.index.toFixed(2) + ") based on the long-standing pattern that average wages run higher in the Northeast and West and lower in the South and Midwest. It is not a state-specific wage from the BLS survey. A large city and a rural county in the same region can differ by a lot.</p>";
+    if (answers.state === "NC") {
+      html += '<p class="uf-note">UAGC is currently not accepting new enrollments in North Carolina. Confirm availability before you apply.</p>';
+    }
+    if (answers.level === "doctoral") {
+      html += '<p class="uf-note">UAGC\'s doctoral program is the Doctorate in Organizational Leadership. It is listed first because you asked for a doctorate. The next cards are the closest subject-area programs, usually at the master\'s level.</p>';
+    }
+    html += '<div class="uf-chips">';
+    html += chip(region.label + " region");
+    html += chip(levelWord(answers.level));
+    html += chip(experienceLabel());
+    var focusLabel = labelFor(FOCUS[answers.energy] || [], answers.focus);
+    if (focusLabel) html += chip(focusLabel);
+    html += "</div>";
+
+    rows.forEach(function (row, i) {
+      html += renderCard(row, i);
+    });
+
+    html += '<section class="uf-card"><h3 style="color:#0C234B">How the pay bands compare</h3>';
+    html += '<p class="uf-muted">Each bar is the regional range for your experience band. The tick marks the unadjusted U.S. ' + (rows[0].career.wageKind === "mean" ? "reference wage" : "median") + " for that occupation.</p>";
+    html += rangeChart(rows);
+    html += renderTable(rows);
+    html += "</section>";
+
+    html += '<section class="uf-card"><h3 style="color:#0C234B">What we heard</h3><ul>';
+    html += "<li>" + esc(labelFor(ENERGY, answers.energy)) + "</li>";
+    html += "<li>" + esc(focusLabel || "A specific focus inside that interest") + "</li>";
+    html += "<li>" + esc(labelFor(PRIORITY, answers.priority)) + "</li>";
+    html += "<li>" + esc(experienceLabel()) + " in the " + esc(region.label) + "</li>";
+    html += "</ul></section>";
+
+    html += '<div class="uf-actions">';
+    html += '<button type="button" class="uf-btn uf-btn-red" id="uf-pdf">Download PDF</button>';
+    html += '<a class="uf-btn uf-btn-primary" style="text-decoration:none;display:inline-block" href="' + esc(rows[0].program.url) + '" target="_blank" rel="noopener">View top program</a>';
+    html += '<button type="button" class="uf-btn uf-btn-ghost" id="uf-back-results">Edit answers</button>';
+    html += '<button type="button" class="uf-btn uf-btn-ghost" id="uf-restart">Start over</button>';
+    html += "</div>";
+
+    html += '<div class="uf-sources"><p><strong>Sources and limits.</strong> UAGC does not guarantee employment, licensure, or earnings. Compare your metro on CareerOneStop, and use LinkedIn Salary, Glassdoor, and Payscale for employer-reported local ranges. Those sites are not copied into the numbers above.</p><ul>';
+    html += '<li>U.S. Bureau of Labor Statistics, Occupational Employment and Wage Statistics, May 2025, including the national median for all occupations of $50,980.</li>';
+    html += '<li>U.S. Bureau of Labor Statistics, Occupational Outlook Handbook, 2025-35 projections, for the growth rates named on the cards.</li>';
+    html += '<li>O*NET OnLine, for the kinds of tasks these occupations include. <a href="https://www.onetonline.org/" target="_blank" rel="noopener">onetonline.org</a></li>';
+    html += '<li>Program list reviewed from <a href="https://www.uagc.edu/online-degrees" target="_blank" rel="noopener">uagc.edu/online-degrees</a> on October 20, 2026.</li>';
+    html += '<li>Regional factors: Northeast 1.10, West 1.07, Midwest 0.96, South 0.93. Rounded planning factors, not a state OEWS extract.</li>';
+    html += '<li><a href="https://www.careeronestop.org/Toolkit/Wages/find-salary.aspx" target="_blank" rel="noopener">CareerOneStop salary finder</a> · <a href="https://www.linkedin.com/salary/" target="_blank" rel="noopener">LinkedIn Salary</a> · <a href="https://www.glassdoor.com/Salaries/index.htm" target="_blank" rel="noopener">Glassdoor</a> · <a href="https://www.payscale.com/" target="_blank" rel="noopener">Payscale</a></li>';
+    html += "</ul><p>866-711-1700 · The University of Arizona Global Campus is accredited by WSCUC.</p></div>";
+    return html;
+  }
+
+  function chip(text) {
+    return '<span class="uf-chip">' + esc(text) + "</span>";
+  }
+
+  function renderCard(row, index) {
+    var family = row.family;
+    var badge = row.pinned ? "Doctoral level you asked for" : (index === 0 ? "Closest match" : "Also fits");
+    var html = '<article class="uf-card' + (index === 0 ? " uf-card-top" : "") + '">';
+    html += '<span class="uf-badge">' + esc(badge) + "</span>";
+    html += '<h3 class="uf-program">' + esc(row.program.title) + "</h3>";
+    html += '<p class="uf-career">' + esc(row.career.title) + "</p>";
+    html += '<p class="uf-muted">' + esc(levelWord(row.program.level)) + "</p>";
+    html += '<div class="uf-skill" style="margin-top:8px"><span>Match</span><div class="uf-track"><span style="width:' + row.alignment + '%"></span></div><span>' + row.alignment + "%</span></div>";
+    if (row.program.note) html += '<p class="uf-muted">' + esc(row.program.note) + "</p>";
+    if (answers.level === "associate" && row.program.level !== "associate") {
+      var bridge = family.bridge;
+      html += '<p class="uf-note">This focus does not have its own associate degree. The bachelor\'s program is the closest match.';
+      if (bridge) html += " A shorter start in a related area is the <a href='" + esc(bridge.url) + "'>" + esc(bridge.title) + "</a>.";
+      html += "</p>";
+    }
+    if (answers.level === "doctoral" && !family.doctoralFit) {
+      html += '<p class="uf-muted">Shown at the master\'s or bachelor\'s level because the doctorate is specifically organizational leadership.</p>';
+    }
+    html += "<ul>";
+    family.summary.forEach(function (line) { html += "<li>" + esc(line) + "</li>"; });
+    html += "</ul>";
+    html += '<p class="uf-payline">' + money(row.pay.low) + " – " + money(row.pay.high) + "</p>";
+    html += '<p class="uf-muted">Planning range for your experience in the ' + esc(REGIONS[regionKey()].label) + '. ' + wagePhrase(row.career) + ": " + money(row.pay.national) + (row.pay.estimated ? ". Low and high ends are estimated from the national figure because BLS percentile wages were not stored for this occupation." : ". Low and high ends start from published 10th and 90th percentile wages, placed on an experience band, then scaled by region.") + "</p>";
+    if (family.benchmark) html += '<p class="uf-muted">' + esc(family.benchmark) + "</p>";
+    if (row.career.outlook) {
+      html += outlookChart(row.career);
+    }
+    html += '<h3 style="margin-top:16px;color:#0C234B;font-size:18px">How this work tends to use your strengths</h3>';
+    html += '<p class="uf-muted">A guide from typical tasks for the occupation, not a score of your ability.</p>';
+    family.skills.forEach(function (pair) {
+      html += '<div class="uf-skill"><span>' + esc(pair[0]) + '</span><div class="uf-track"><span style="width:' + pair[1] + '%"></span></div><span>' + pair[1] + "</span></div>";
+    });
+    if (family.caution) html += '<p class="uf-note">' + esc(family.caution) + "</p>";
+    html += '<div class="uf-card uf-outlier"><h3 style="color:#0C234B">A less traditional route</h3>';
+    html += "<p><strong>" + esc(family.outlier.title) + "</strong></p>";
+    html += "<p>" + esc(family.outlier.text) + "</p></div>";
+    if (family.altProgram) {
+      html += '<p style="margin-top:10px"><a href="' + esc(family.altProgram.url) + '" target="_blank" rel="noopener">Also consider: ' + esc(family.altProgram.title) + "</a></p>";
+    }
+    html += '<p style="margin-top:8px"><a href="' + esc(row.program.url) + '" target="_blank" rel="noopener">View program and request information</a>';
+    if (row.career.href) html += ' · <a href="' + esc(row.career.href) + '" target="_blank" rel="noopener">BLS occupation profile</a>';
+    html += "</p></article>";
+    return html;
+  }
+
+  function outlookChart(career) {
+    var max = Math.max(career.outlook, W.allOutlook, 10);
+    var w1 = Math.round((career.outlook / max) * 100);
+    var w2 = Math.round((W.allOutlook / max) * 100);
+    return '<h3 style="margin-top:16px;color:#0C234B;font-size:18px">Projected job growth, 2025–35</h3>' +
+      '<p class="uf-muted">' + esc(career.outlookText) + " for this occupation. Average for all occupations is " + W.allOutlook + "%.</p>" +
+      '<div class="uf-skill"><span>This occupation</span><div class="uf-track"><span style="width:' + w1 + '%;background:#AB0520"></span></div><span>' + career.outlook + "%</span></div>" +
+      '<div class="uf-skill"><span>All occupations</span><div class="uf-track"><span style="width:' + w2 + '%"></span></div><span>' + W.allOutlook + "%</span></div>";
+  }
+
+  function rangeChart(rows) {
+    var vals = [40000];
+    rows.forEach(function (r) { vals.push(r.pay.low, r.pay.high, r.pay.national); });
+    var min = Math.min.apply(null, vals) * 0.9;
+    var max = Math.max.apply(null, vals) * 1.05;
+    var labelW = 210;
+    var chartW = 430;
+    var height = 36 + rows.length * 58;
+    function x(v) { return labelW + ((v - min) / (max - min)) * chartW; }
+    var svg = '<svg viewBox="0 0 680 ' + height + '" role="img" aria-label="Pay ranges for your top matches">';
+    rows.forEach(function (r, i) {
+      var y = 28 + i * 58;
+      var x1 = x(r.pay.low);
+      var x2 = x(r.pay.high);
+      var xm = x(r.pay.national);
+      var color = i === 0 ? "#AB0520" : "#0C234B";
+      svg += '<text x="0" y="' + (y + 14) + '" fill="#0C234B" font-size="13" font-family="Arial">' + esc(r.career.title).slice(0, 34) + "</text>";
+      svg += '<rect x="' + x1.toFixed(1) + '" y="' + y + '" width="' + Math.max(8, x2 - x1).toFixed(1) + '" height="16" rx="8" fill="' + color + '" opacity="0.9"></rect>';
+      svg += '<line x1="' + xm.toFixed(1) + '" y1="' + (y - 4) + '" x2="' + xm.toFixed(1) + '" y2="' + (y + 20) + '" stroke="#172033" stroke-width="2"></line>';
+      svg += '<text x="' + x1.toFixed(1) + '" y="' + (y + 36) + '" fill="#4E5968" font-size="12" font-family="Arial">' + money(r.pay.low) + " – " + money(r.pay.high) + "</text>";
+    });
+    svg += "</svg>";
+    return svg;
+  }
+
+  function renderTable(rows) {
+    var html = '<table class="uf-table"><thead><tr><th>Path</th><th>Your range</th><th>U.S. reference</th><th>Growth</th></tr></thead><tbody>';
+    rows.forEach(function (r) {
+      html += "<tr><td>" + esc(r.program.title) + "<br><span class='uf-muted'>" + esc(r.career.title) + "</span></td>";
+      html += "<td>" + money(r.pay.low) + " – " + money(r.pay.high) + "</td>";
+      html += "<td>" + money(r.pay.national) + (r.career.wageKind === "mean" ? " mean" : " median") + "</td>";
+      html += "<td>" + (r.career.outlook ? r.career.outlook + "% " + esc(r.career.outlookText) : "See OOH") + "</td></tr>";
+    });
+    html += "</tbody></table>";
+    return html;
+  }
+
+  function pdfSafe(s) {
+    return String(s == null ? "" : s)
+      .replace(/[–—]/g, "-")
+      .replace(/[‘’]/g, "'")
+      .replace(/[“”]/g, '"')
+      .replace(/[^\x20-\x7E\n]/g, "");
+  }
+
+  function pdfEsc(s) {
+    return pdfSafe(s).replace(/\\/g, "\\\\").replace(/\(/g, "\\(").replace(/\)/g, "\\)");
+  }
+
+  function wrapPdf(text, size, width) {
+    var maxChars = Math.max(24, Math.floor(width / (size * 0.52)));
+    var words = pdfSafe(text).split(/\s+/);
+    var lines = [];
+    var line = "";
+    words.forEach(function (w) {
+      if (w.length > maxChars) {
+        if (line) { lines.push(line); line = ""; }
+        var i = 0;
+        while (i < w.length) {
+          var chunk = w.slice(i, i + maxChars);
+          i += maxChars;
+          if (i < w.length) lines.push(chunk);
+          else line = chunk;
+        }
+        return;
+      }
+      var next = line ? line + " " + w : w;
+      if (next.length > maxChars && line) { lines.push(line); line = w; }
+      else line = next;
+    });
+    if (line) lines.push(line);
+    return lines.length ? lines : [""];
+  }
+
+  function buildResultPdf(rows) {
+    var pages = [];
+    var commands = [];
+    var y = 720;
+    function newPage() {
+      if (commands.length) pages.push(commands);
+      commands = [];
+      y = 720;
+    }
+    function ensure(h) { if (y - h < 58) newPage(); }
+    function text(str, size, bold, color, x) {
+      var lines = wrapPdf(str, size, 612 - (x || 54) - 54);
+      ensure(lines.length * (size + 3) + 2);
+      lines.forEach(function (line) {
+        commands.push("BT /F" + (bold ? "2" : "1") + " " + size + " Tf " + color + " rg 1 0 0 1 " + (x || 54) + " " + y.toFixed(1) + " Tm (" + pdfEsc(line) + ") Tj ET");
+        y -= size + 3;
+      });
+    }
+    function gap(n) { y -= n; }
+    var region = REGIONS[regionKey()];
+    var who = answers.name ? answers.name : "Prospective student";
+    text("Degree Finder results", 20, true, "0.047 0.137 0.294");
+    gap(4);
+    text(who + "  |  " + (STATE_NAME[answers.state] || "") + "  |  " + region.label + " region", 12, false, "0.2 0.2 0.2");
+    text(experienceLabel(), 11, false, "0.35 0.35 0.35");
+    gap(8);
+    rows.forEach(function (row, i) {
+      ensure(80);
+      text((i + 1) + ". " + row.program.title, 14, true, "0.047 0.137 0.294");
+      text(row.career.title + "  |  " + levelWord(row.program.level), 11, false, "0.15 0.15 0.15");
+      text("Your planning range: " + money(row.pay.low) + " - " + money(row.pay.high), 12, true, "0.671 0.020 0.125");
+      text(wagePhrase(row.career) + ": " + money(row.pay.national) + (row.career.outlook ? "   |   Outlook: " + row.career.outlook + "% (" + row.career.outlookText + ")" : ""), 10, false, "0.3 0.3 0.3");
+      var barMax = row.pay.high;
+      var barW = Math.max(20, Math.min(360, (row.pay.national / barMax) * 360));
+      ensure(18);
+      commands.push("0.91 0.92 0.94 rg 54 " + (y - 4).toFixed(1) + " 360 8 re f");
+      commands.push("0.047 0.137 0.294 rg 54 " + (y - 4).toFixed(1) + " " + barW.toFixed(1) + " 8 re f");
+      y -= 16;
+      row.family.summary.forEach(function (line) { text("- " + line, 10, false, "0.1 0.1 0.1"); });
+      gap(3);
+      text("Less traditional route: " + row.family.outlier.title, 11, true, "0.671 0.020 0.125");
+      text(row.family.outlier.text, 10, false, "0.1 0.1 0.1");
+      text(row.program.url, 9, false, "0.137 0.459 0.655");
+      gap(10);
+    });
+    text("How to read the pay ranges", 12, true, "0.047 0.137 0.294");
+    text("Figures start from BLS May 2025 national wages. Experience places you between the 10th and 90th percentile when those percentiles are published. Otherwise the ends are estimated from the median or mean. The " + region.label + " factor of " + region.index.toFixed(2) + " is then applied and the result is rounded to the nearest $1,000.", 10, false, "0.15 0.15 0.15");
+    text("UAGC does not guarantee employment, licensure, transfer credit, or earnings. Teacher, counseling, psychology, nursing, and health-information credentials are regulated separately. North Carolina enrollment limits, if they apply, should be confirmed on uagc.edu.", 10, false, "0.15 0.15 0.15");
+    text("Sources: BLS OEWS May 2025; BLS Occupational Outlook Handbook 2025-35; O*NET OnLine; UAGC program list reviewed October 20, 2026. Compare local postings on CareerOneStop, LinkedIn Salary, Glassdoor, and Payscale.", 10, false, "0.15 0.15 0.15");
+    text("866-711-1700  |  uagc.edu  |  WSCUC accredited", 10, true, "0.047 0.137 0.294");
+    if (commands.length) pages.push(commands);
+
+    var objects = [];
+    function add(body) { objects.push(body); return objects.length; }
+    var font1 = add("<< /Type /Font /Subtype /Type1 /BaseFont /Helvetica >>");
+    var font2 = add("<< /Type /Font /Subtype /Type1 /BaseFont /Helvetica-Bold >>");
+    var pageIds = [];
+    var contentIds = [];
+    pages.forEach(function () { pageIds.push(null); });
+    /* ids: fonts already used 1..2, pages object will be last-known after content */
+    var pagesId = add("<< /Type /Pages /Count " + pages.length + " /Kids [KIDS] >>");
+    var catalogId = add("<< /Type /Catalog /Pages " + pagesId + " 0 R >>");
+    pages.forEach(function (cmds, index) {
+      var header = [
+        "0.671 0.020 0.125 rg 0 756 612 36 re f",
+        "BT /F2 11 Tf 1 1 1 rg 1 0 0 1 54 770 Tm (THE UNIVERSITY OF ARIZONA GLOBAL CAMPUS) Tj ET",
+        "BT /F1 10 Tf 1 1 1 rg 1 0 0 1 430 770 Tm (Degree Finder) Tj ET",
+        "0.047 0.137 0.294 rg 0 752 612 4 re f",
+        "BT /F1 8 Tf 0.35 0.35 0.35 rg 1 0 0 1 54 40 Tm (Pay ranges are planning figures, not a job offer. uagc.edu  |  866-711-1700) Tj ET",
+        "BT /F1 8 Tf 0.35 0.35 0.35 rg 1 0 0 1 500 40 Tm (Page " + (index + 1) + " of " + pages.length + ") Tj ET"
+      ];
+      var stream = header.concat(cmds).join("\n") + "\n";
+      var cid = add("<< /Length " + stream.length + " >>\nstream\n" + stream + "endstream");
+      contentIds.push(cid);
+      var pid = add("<< /Type /Page /Parent " + pagesId + " 0 R /MediaBox [0 0 612 792] /Contents " + cid + " 0 R /Resources << /Font << /F1 " + font1 + " 0 R /F2 " + font2 + " 0 R >> >> >>");
+      pageIds[index] = pid;
+    });
+    objects[pagesId - 1] = "<< /Type /Pages /Count " + pages.length + " /Kids [" + pageIds.map(function (id) { return id + " 0 R"; }).join(" ") + "] >>";
+
+    var chunks = ["%PDF-1.4\n"];
+    var offsets = [0];
+    objects.forEach(function (body, i) {
+      var n = i + 1;
+      offsets[n] = chunks.join("").length;
+      chunks.push(n + " 0 obj\n" + body + "\nendobj\n");
+    });
+    var xrefAt = chunks.join("").length;
+    var xref = "xref\n0 " + (objects.length + 1) + "\n";
+    xref += "0000000000 65535 f \n";
+    for (var i = 1; i <= objects.length; i++) {
+      var off = String(offsets[i]);
+      xref += new Array(11 - off.length).join("0") + off + " 00000 n \n";
+    }
+    xref += "trailer\n<< /Size " + (objects.length + 1) + " /Root " + catalogId + " 0 R >>\nstartxref\n" + xrefAt + "\n%%EOF";
+    chunks.push(xref);
+    var str = chunks.join("");
+    var bytes = new Uint8Array(str.length);
+    for (var c = 0; c < str.length; c++) bytes[c] = str.charCodeAt(c) & 255;
+    return bytes;
+  }
+
+  function downloadPdf() {
+    var rows = rank();
+    var bytes = buildResultPdf(rows);
+    var blob = new Blob([bytes], { type: "application/pdf" });
+    var link = document.createElement("a");
+    var slug = (answers.name || "results").toLowerCase().replace(/[^a-z0-9]+/g, "-").replace(/^-|-$/g, "");
+    link.href = URL.createObjectURL(blob);
+    link.download = "UAGC-Degree-Finder-" + (slug || "results") + ".pdf";
+    document.body.appendChild(link);
+    link.click();
+    document.body.removeChild(link);
+    setTimeout(function () { URL.revokeObjectURL(link.href); }, 2000);
+  }
+
+  function applySample(name) {
+    var samples = {
+      security: { energy: "tech", focus: "security", effort: "systems", goal: "skill", level: "bachelor", skill: "sk-sec", priority: "earnings", experience: "established", state: "AZ", name: "Alex" },
+      education: { energy: "learn", focus: "children", effort: "teach", goal: "mission", level: "bachelor", skill: "sk-coach", priority: "mission", experience: "building", state: "NC", name: "Jordan" },
+      health: { energy: "health", focus: "hcadmin", effort: "care", goal: "advance", level: "master", skill: "sk-hops", priority: "leadership", experience: "leading", state: "TX", name: "Riley" }
+    };
+    if (!samples[name]) return false;
+    answers = samples[name];
+    resultsMode = true;
+    step = 8;
+    return true;
+  }
+
+  var params = new URLSearchParams(window.location.search);
+  if (!applySample(params.get("sample"))) restore();
+  render();
+
+  window.UAGCDegreeFinder = {
+    match: function (partial) {
+      answers = partial || answers;
+      return rank();
+    }
+  };
+})();
+</script>
+</div>
+<!-- ========== PASTE INTO WYSIWYG: END ========== -->
+</body>
+</html>
